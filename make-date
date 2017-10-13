@@ -79,3 +79,8 @@ on zpad(N)
     end if
     return rval
 end zpad
+
+on substring(source, schar, lchar)
+    set rval to characters schar thru lchar of source
+    return rval as string
+end substring
