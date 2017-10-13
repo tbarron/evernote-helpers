@@ -61,7 +61,7 @@ on ymd_parse(D)
     return rval
 end ymd_parse
 
-on ymdhms(dateobj)
+on ymdw_format(dateobj)
     set {year:y, month:m, day:d, hours:H, minutes:N, seconds:S} to dateobj
     set mnum to zpad(1*m)
     set d to zpad(d)
@@ -70,7 +70,7 @@ on ymdhms(dateobj)
     set S to zpad(S)
     set rval to y & "." & mnum & d & " " & H & ":" & N & ":" & S
     return rval
-end ymdhms
+end ymdw_format
 
 on zpad(N)
     set rval to "" & N
