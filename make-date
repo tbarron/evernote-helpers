@@ -41,7 +41,7 @@ on run argv
 --    end tell
 end run
 
-on string_to_date(D)
+on ymd_parse(D)
     -- D must be a date string of the format
     --    YYYY.mmdd [HH:MM[:SS]]
     set rval to (current date)
@@ -59,7 +59,7 @@ on string_to_date(D)
 --        end if
 --    end if
     return rval
-end string_to_date
+end ymd_parse
 
 on ymdhms(dateobj)
     set {year:y, month:m, day:d, hours:H, minutes:N, seconds:S} to dateobj
