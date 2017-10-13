@@ -35,3 +35,13 @@ def test_make_date_hhmm():
     assert re.match("2017\.0217\s13:29:\d{2}", result)
 
 
+# -----------------------------------------------------------------------------
+def test_make_date_hhmmss():
+    """
+    make-date with arg '2017.0430 13:29:57' should work
+    """
+    result = pexpect.run("make-date '2017.0430 13:29:57'")
+    result = result.decode()
+    assert "result = " not in result
+    assert re.match("2017\.0430\s13:29:57", result)
+
