@@ -45,3 +45,14 @@ def test_make_date_hhmmss():
     assert "result = " not in result
     assert re.match("2017\.0430\s13:29:57", result)
 
+
+# -----------------------------------------------------------------------------
+def test_make_date_wkday():
+    """
+    the output of make-date should be '2017.0606.tue'
+    """
+    result = pexpect.run("make-date '2017.0606'")
+    result = result.decode()
+    assert "result = " not in result
+    assert re.match("2017\.0430.tue", result)
+
