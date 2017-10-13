@@ -48,14 +48,14 @@ on ymd_parse(D)
     set rval's year to (text 1 thru 4 of D)
     set rval's month to (text 6 thru 7 of D)
     set rval's day to (text 8 thru 9 of D)
---            if length of D as string is greater than or equal to 18 then
---                set rval's seconds to (text 17 thru 18 of D)
---            end if
 
     if length of D is greater than or equal to 12 then
         set rval's hours to (text 11 thru 12 of D)
         if length of D is greater than or equal to 15 then
             set rval's minutes to (text 14 thru 15 of D)
+            if length of D is greater than or equal to 18 then
+                set rval's seconds to (text 17 thru 18 of D)
+            end if
         end if
     end if
     return rval
