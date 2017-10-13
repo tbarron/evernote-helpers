@@ -5,50 +5,80 @@
 on run argv
     set newline to "
     "
-    set target to string_to_date of item 1 of argv
+    set targstr to item 1 of argv
+    set target to string_to_date(targstr)
+    set result to ymdhms(target)
+    do shell script "echo result = " & result
+    -- do shell script "echo len of arg is " & length of item 1 of argv
+    -- do shell script "echo " & ymdhms(current date)
+    -- do shell script "echo " & ymdhms(target)
 
-    tell application "Evernote"
-        -- set mynote to create note with text "start" & newline ¬
-        --     title "Applescript Log" notebook "reference" tags "working"
-        -- get the log note
-        set note_list to (find notes "tag:working")
-        set mynote to item 1 of note_list
-        
-        -- record the verbatim target
-        append mynote text newline & "target: " & target
-
-        -- show the current date
-        set today to (current date)
-        set {year:y, month:m, day:d} to today
-        append mynote text newline & "current: year = " & y ¬
-            & "; month = " & 1*m & "; day = " & d
-
-        -- compute the target
-        set ctarg to (current date)
-        set year of ctarg to (text 1 thru 4 of target)
-        set month of ctarg to (text 6 thru 7 of target)
-        set day of ctarg to (text 8 thru 9 of target)
-        set {year:y, month:m, day:d} to ctarg
-        append mynote text newline & "ctarg: year = " & y ¬
-            & "; month = " & 1*m & "; day = " & d
-    end tell
+--
+--    tell application "Evernote"
+--        -- set mynote to create note with text "start" & newline ¬
+--        --     title "Applescript Log" notebook "reference" tags "working"
+--        -- get the log note
+--        set note_list to (find notes "tag:working")
+--        set mynote to item 1 of note_list
+--        
+--        -- record the verbatim target
+--        append mynote text newline & "target: " & target
+--
+--        -- show the current date
+--        set today to (current date)
+--        set {year:y, month:m, day:d} to today
+--        append mynote text newline & "current: year = " & y ¬
+--            & "; month = " & 1*m & "; day = " & d
+--
+--        -- compute the target
+--        set ctarg to (current date)
+--        set year of ctarg to (text 1 thru 4 of target)
+--        set month of ctarg to (text 6 thru 7 of target)
+--        set day of ctarg to (text 8 thru 9 of target)
+--        set {year:y, month:m, day:d} to ctarg
+--        append mynote text newline & "ctarg: year = " & y ¬
+--            & "; month = " & 1*m & "; day = " & d
+--    end tell
 end run
 
 on string_to_date(D)
     -- D must be a date string of the format
     --    YYYY.mmdd [HH:MM[:SS]]
     set rval to (current date)
-    set year of rval to (text 1 thru 4 of D)
-    set month of rval to (text 6 thru 7 of D)
-    set day of rval to (text 8 thru 9 of D)
-    if length of D is greater than or equal to 12 then
-        set hour of rval to (text 11 thru 12 of D)
-        if length of D is greater than or equal to 15 then
-            set minute of rval to (text 14 thru 15 of D)
-            if length of D is greater than or equal to 18 then
-                set second of rval to (text 17 thru 18 of D)
-            end if
-        end if
-    end if
+    set rval's year to (text 1 thru 4 of D)
+    set rval's month to (text 6 thru 7 of D)
+    set rval's day to (text 8 thru 9 of D)
+    do shell script "echo length of '" & D & "' is " & length of D
+--    if length of D is greater than or equal to 12 then
+--        set rval's hours to (text 11 thru 12 of D)
+--        if length of D as string is greater than or equal to 15 then
+--            set rval's minutes to (text 14 thru 15 of D)
+--            if length of D as string is greater than or equal to 18 then
+--                set rval's seconds to (text 17 thru 18 of D)
+--            end if
+--        end if
+--    end if
     return rval
 end string_to_date
+
+on ymdhms(dateobj)
+    set {year:y, month:m, day:d, hours:H, minutes:N, seconds:S} to dateobj
+    set mnum to 1*m
+    if length of "" & mnum as string is less than 2 then
+        set mnum to "0" & mnum
+    end if
+    if length of "" & d as string is less than 2 then
+        set d to "0" & d
+    end if
+--    if length of H is less than 2 then
+--        set H to "0" & H
+--    end if
+--    if length of M is less than 2 then
+--        set M to "0" & M
+--    end if
+--    if length of S is less than 2 then
+--        set S to "0" & S
+--    end if
+    set rval to y & "." & mnum & d & " " & H & ":" & N & ":" & S
+    return rval
+end ymdhms
