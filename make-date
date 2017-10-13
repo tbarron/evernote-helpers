@@ -6,9 +6,9 @@ on run argv
     set newline to "
     "
     set targstr to item 1 of argv
-    set target to string_to_date(targstr)
-    set result to ymdhms(target)
-    do shell script "echo result = " & result
+    set target to ymd_parse(targstr)
+    set result to ymdw_format(target)
+    do shell script "echo " & result
     -- do shell script "echo len of arg is " & length of item 1 of argv
     -- do shell script "echo " & ymdhms(current date)
     -- do shell script "echo " & ymdhms(target)
@@ -63,22 +63,19 @@ end string_to_date
 
 on ymdhms(dateobj)
     set {year:y, month:m, day:d, hours:H, minutes:N, seconds:S} to dateobj
-    set mnum to 1*m
-    if length of "" & mnum as string is less than 2 then
-        set mnum to "0" & mnum
-    end if
-    if length of "" & d as string is less than 2 then
-        set d to "0" & d
-    end if
---    if length of H is less than 2 then
---        set H to "0" & H
---    end if
---    if length of M is less than 2 then
---        set M to "0" & M
---    end if
---    if length of S is less than 2 then
---        set S to "0" & S
---    end if
+    set mnum to zpad(1*m)
+    set d to zpad(d)
+    set H to zpad(H)
+    set N to zpad(N)
+    set S to zpad(S)
     set rval to y & "." & mnum & d & " " & H & ":" & N & ":" & S
     return rval
 end ymdhms
+
+on zpad(N)
+    set rval to "" & N
+    if length of rval is less than 2 then
+        set rval to "0" & rval
+    end if
+    return rval
+end zpad
