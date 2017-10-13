@@ -1,0 +1,54 @@
+#!/usr/bin/osascript
+
+
+-- ============================================================
+on run argv
+    set newline to "
+    "
+    set target to string_to_date of item 1 of argv
+
+    tell application "Evernote"
+        -- set mynote to create note with text "start" & newline ¬
+        --     title "Applescript Log" notebook "reference" tags "working"
+        -- get the log note
+        set note_list to (find notes "tag:working")
+        set mynote to item 1 of note_list
+        
+        -- record the verbatim target
+        append mynote text newline & "target: " & target
+
+        -- show the current date
+        set today to (current date)
+        set {year:y, month:m, day:d} to today
+        append mynote text newline & "current: year = " & y ¬
+            & "; month = " & 1*m & "; day = " & d
+
+        -- compute the target
+        set ctarg to (current date)
+        set year of ctarg to (text 1 thru 4 of target)
+        set month of ctarg to (text 6 thru 7 of target)
+        set day of ctarg to (text 8 thru 9 of target)
+        set {year:y, month:m, day:d} to ctarg
+        append mynote text newline & "ctarg: year = " & y ¬
+            & "; month = " & 1*m & "; day = " & d
+    end tell
+end run
+
+on string_to_date(D)
+    -- D must be a date string of the format
+    --    YYYY.mmdd [HH:MM[:SS]]
+    set rval to (current date)
+    set year of rval to (text 1 thru 4 of D)
+    set month of rval to (text 6 thru 7 of D)
+    set day of rval to (text 8 thru 9 of D)
+    if length of D is greater than or equal to 12 then
+        set hour of rval to (text 11 thru 12 of D)
+        if length of D is greater than or equal to 15 then
+            set minute of rval to (text 14 thru 15 of D)
+            if length of D is greater than or equal to 18 then
+                set second of rval to (text 17 thru 18 of D)
+            end if
+        end if
+    end if
+    return rval
+end string_to_date
