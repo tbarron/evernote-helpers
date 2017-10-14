@@ -1,15 +1,35 @@
 #!/usr/bin/osascript
 
 on run argv
+    set smult to "-m"
+    set lmult to "-" & "-" & "multiple"
     tell application "Evernote"
-        set query_string to item 1 of argv
-        set note_list to (find notes query_string)
-        repeat with my_note in note_list
-            set my_win to open note window with my_note
-            close my_win
-            delete my_note
+        set multiple to false
+        set clean_args to {}
+        repeat with arg in argv
+            if (arg as string) is smult or (arg as string) is lmult then
+                set multiple to true
+            else
+                set end of clean_args to arg
+            end if
         end repeat
-        set note_count to (count of note_list)
-        do shell script "echo " & note_count & " notes deleted"
+
+
+        set query_string to item 1 of clean_args
+        set note_list to (find notes query_string)
+        if (count of note_list) is 0 then
+            do shell script "echo no notes match " & query_string
+        else if (count of note_list) is greater than 1 and not multiple then
+            do shell script "echo 0 notes deleted, --multiple required"
+        else
+            repeat with my_note in note_list
+                set my_win to open note window with my_note
+                close my_win
+                delete my_note
+            end repeat
+
+            set note_count to (count of note_list)
+            do shell script "echo " & note_count & " notes deleted"
+        end if
     end tell
 end run
