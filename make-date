@@ -80,6 +80,12 @@ on zpad(N)
     return rval
 end zpad
 
+on lowercase(this_text)
+    set rval to do shell script "echo " & quoted form of (this_text) & ¬
+        " | tr A-Z a-z"
+    return rval as string
+end lowercase
+
 on substring(source, schar, lchar)
     set rval to characters schar thru lchar of source
     return rval as string
