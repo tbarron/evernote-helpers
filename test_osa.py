@@ -56,3 +56,20 @@ def test_make_date_wkday():
     assert "result = " not in result
     assert re.match("2017\.0606\.tue", result)
 
+
+# -----------------------------------------------------------------------------
+def test_count_notes_one():
+    """
+    The query string 'tag:current intitle:Start' should always find one note
+    """
+    result = pexpect.run("count-notes 'tag:current intitle:Start'")
+    assert "notes: 1\r\n" in result.decode()
+
+
+# -----------------------------------------------------------------------------
+def test_count_notes_zero():
+    """
+    The query string 'tag:precious tag:delete_me' should never find a note
+    """
+    result = pexpect.run("count-notes 'tag:precious tag:delete_me'")
+    assert "notes: 0\r\n" in result.decode()
