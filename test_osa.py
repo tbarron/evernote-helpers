@@ -20,8 +20,8 @@ def test_make_date_basic():
     result = pexpect.run("make-date 2017.0101")
     result = result.decode()
     assert "result = " not in result
-    assert "2017.0101 " in result
-    assert re.match("\d{4}\.\d{4}\s\d{2}:\d{2}:\d{2}", result)
+    assert "2017.0101" in result
+    assert re.match("\d{4}\.\d{4}\.\S\S\S", result)
 
 
 # -----------------------------------------------------------------------------
@@ -32,7 +32,7 @@ def test_make_date_hhmm():
     result = pexpect.run("make-date '2017.0217 13:29'")
     result = result.decode()
     assert "result = " not in result
-    assert re.match("2017\.0217\s13:29:\d{2}", result)
+    assert re.match("2017\.0217\.fri", result)
 
 
 # -----------------------------------------------------------------------------
@@ -43,7 +43,7 @@ def test_make_date_hhmmss():
     result = pexpect.run("make-date '2017.0430 13:29:57'")
     result = result.decode()
     assert "result = " not in result
-    assert re.match("2017\.0430\s13:29:57", result)
+    assert re.match("2017\.0430\.sun", result)
 
 
 # -----------------------------------------------------------------------------
@@ -54,5 +54,5 @@ def test_make_date_wkday():
     result = pexpect.run("make-date '2017.0606'")
     result = result.decode()
     assert "result = " not in result
-    assert re.match("2017\.0430.tue", result)
+    assert re.match("2017\.0606\.tue", result)
 
