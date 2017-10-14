@@ -89,7 +89,7 @@ def test_del_notes_nomult():
     assert "note test note 2 created" in result.decode()
 
     result = pexpect.run("del-notes 'tag:testing tag:delete_me'")
-    assert "0 notes deleted, -m option required" in result.decode()
+    assert "0 notes deleted, --multiple required" in result.decode()
 
     result = pexpect.run("del-notes -m 'tag:testing tag:delete_me'")
     assert "2 notes deleted" in result.decode()
