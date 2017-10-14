@@ -1,0 +1,14 @@
+#!/usr/bin/osascript
+
+-- ============================================================
+on run argv
+    tell application "Evernote"
+        set query to item 1 of argv
+        set nlist to (find notes query)
+        if (count of nlist) >= 1 then
+            do shell script "echo true"
+        else
+            do shell script "echo false"
+        end if 
+    end tell
+end run

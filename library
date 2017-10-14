@@ -1,0 +1,25 @@
+on copy_note(old_note, new_title)
+    tell application "Evernote"
+        set my_content to HTML content of old_note
+        set new_note to create note with text "" title new_title notebook "Journal" tags "testing"
+        set HTML content of new_note to my_content
+    end tell
+    return new_note
+end copy_note
+
+on diary_title(the_date)
+    set { year:y, month:m, day:d, weekday:wkday } to (the_date)
+    set wdabbr to my lowercase(my substring(wkday as string, 1, 3))
+    set the_title to y & "." & (1*m) & d & "." & wdabbr as string & " diary"
+    return the_title
+end diary_title
+
+on lowercase(this_text)
+    set rval to do shell script "echo " & quoted form of (this_text) & " | tr A-Z a-z"
+    return rval as string
+end lowercase
+
+on substring(source, schar, lchar)
+    set rval to characters schar thru lchar of source
+    return rval as string
+end substring

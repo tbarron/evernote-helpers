@@ -1,0 +1,12 @@
+#!/usr/bin/osascript
+
+on run argv
+    tell application "Evernote"
+        set query_string to item 1 of argv
+        set note_list to (find notes query_string)
+        repeat with my_note in note_list
+            set my_win to open note window with my_note
+        end repeat
+    end tell
+end run
+

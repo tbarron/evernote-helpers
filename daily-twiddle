@@ -1,0 +1,65 @@
+#!/usr/bin/osascript
+on run argv
+    set cwd to (do shell script "pwd")
+    set fpath to cwd & "/library.scpt"
+    set lib to load script POSIX file fpath
+
+    set today_title to lib's diary_title(current date)
+    set yesterdate to (current date) - 24*3600
+    set yester_title to lib's diary_title(yesterdate)
+
+    tell application "Evernote"
+        set query to "intitle:" & yester_title
+        set nlist to (find notes query)
+        if (count of nlist) is greater than 1 then
+            do shell script "echo " & yester_title & " matches multiple notes"
+        else
+            set yester_note to item 1 of nlist
+            set taglist to (tags of yester_note)
+            my safe_rmtag(yester_note, tag named "today")
+            my safe_addtag(yester_note, tag named "past")
+        end if
+
+        set query to "intitle:" & today_title
+        set nlist to (find notes query)
+        if (count of nlist) is greater than 1 then
+            do shell script "echo " & today_title & " matches multiple notes"
+        else
+            set today_note to item 1 of nlist
+            my safe_rmtag(today_note, tag named "future")
+            my safe_addtag(today_note, tag named "today")
+            my safe_addtag(today_note, tag named "current")
+        end if
+    end tell
+end run
+
+on safe_rmtag(the_note, the_tag)
+    tell application "Evernote"
+        set tag_list to tags of the_note
+        if my is_in(tag_list, the_tag) then
+            unassign the_tag from the_note
+        end if
+    end tell
+end safe_rmtag
+
+on safe_addtag(the_note, the_tag)
+    tell application "Evernote"
+        set tag_list to tags of the_note
+        if (not(my is_in(tag_list, the_tag))) then
+            assign the_tag to the_note
+        end if
+    end tell
+end safe_addtag
+
+on is_in(the_list, the_tag)
+   tell application "Evernote"
+       set rval to false
+       repeat with a_tag in the_list
+           if a_tag is the_tag then
+               set rval to true
+               exit repeat
+           end if
+       end repeat
+       return rval
+   end tell
+end is_in
