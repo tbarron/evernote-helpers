@@ -62,13 +62,15 @@ on ymd_parse(D)
 end ymd_parse
 
 on ymdw_format(dateobj)
-    set {year:y, month:m, day:d, hours:H, minutes:N, seconds:S} to dateobj
+    set {year:y, month:m, day:d, hours:H, minutes:N, seconds:S, weekday:w} ¬
+        to dateobj
+    set wkd to lowercase(substring(w as string, 1, 3))
     set mnum to zpad(1*m)
     set d to zpad(d)
     set H to zpad(H)
     set N to zpad(N)
     set S to zpad(S)
-    set rval to y & "." & mnum & d & " " & H & ":" & N & ":" & S
+    set rval to y & "." & mnum & d & "." & wkd
     return rval
 end ymdw_format
 
@@ -87,6 +89,6 @@ on lowercase(this_text)
 end lowercase
 
 on substring(source, schar, lchar)
-    set rval to characters schar thru lchar of source
+    set rval to (text schar thru lchar of source)
     return rval as string
 end substring
