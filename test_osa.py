@@ -73,3 +73,18 @@ def test_count_notes_zero():
     """
     result = pexpect.run("count-notes 'tag:precious tag:delete_me'")
     assert "notes: 0\r\n" in result.decode()
+
+
+# -----------------------------------------------------------------------------
+def test_new_note():
+    """
+    The script new-note should create a new note with tags, title, and text
+    specified on the command line.
+    """
+    cmd = ("new-note --title 'Test Note' --text 'this is a test' "
+           "--tag 'testing' --tag 'delete_me'")
+    result = pexpect.run(cmd)
+    assert "note 'Test Note' created" in result.decode()
+
+    result = pexpect.run("count-notes 'tag:testing tag:delete_me intitle:Test'")
+    assert "notes: 1\r\n" in result.decode()
