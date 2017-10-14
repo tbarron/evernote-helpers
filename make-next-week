@@ -1,0 +1,29 @@
+#!/usr/bin/osascript
+
+-- =====================================================================
+on run argv
+    set fpath to "/Users/tbarron/prj/evernote_helpers/library.scpt"
+    do shell script "osacompile -o library.scpt library"
+    property lib : load script POSIX file fpath
+
+    tell application "Evernote"
+        set note_list to (find notes "intitle:diary tag:template")
+        set old_note to item 1 of note_list
+
+        set new_title to lib's diary_title(current date)
+
+        -- set new_note to my duplicate_note(old_note, new_title)
+        set new_note to lib's copy_note(old_note, new_title)
+        open note window with new_note
+    end tell
+end run
+
+-- =====================================================================
+on duplicate_note(old_note, new_title)
+    tell application "Evernote"
+        set my_content to HTML content of old_note
+        set new_note to create note with text "" title new_title notebook "Journal" tags "testing"
+        set HTML content of new_note to my_content
+    end tell
+    return new_note
+end duplicate_note
