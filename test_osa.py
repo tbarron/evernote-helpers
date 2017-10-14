@@ -76,6 +76,16 @@ def test_count_notes_zero():
 
 
 # -----------------------------------------------------------------------------
+def test_del_notes_nomatch():
+    """
+    If del-notes matches no notes, it should report 'no notes match'
+    """
+    cmd = "del-notes 'tag:no_such_note'"
+    result = pexpect.run(cmd)
+    assert "no notes match tag:no_such_note" in result.decode()
+
+
+# -----------------------------------------------------------------------------
 def test_del_notes_nomult():
     """
     Create two notes with tags 'testing' and 'delete_me'. Attempt to delete
