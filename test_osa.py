@@ -108,3 +108,6 @@ def test_create_note():
 
     result = pexpect.run("count-notes 'tag:testing tag:delete_me intitle:Test'")
     assert "notes: 1\r\n" in result.decode()
+
+    result = pexpect.run("del-notes 'tag:testing tag:delete_me intitle:Test'")
+    assert "1 notes deleted" in result.decode()
