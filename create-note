@@ -26,4 +26,6 @@ on run argv
                                  tags tag_list)
         open note window with new_note
     end tell
+
+    do shell script "echo note " & note_title & " created"
 end run
