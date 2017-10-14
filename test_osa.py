@@ -76,6 +76,26 @@ def test_count_notes_zero():
 
 
 # -----------------------------------------------------------------------------
+def test_del_notes_nomult():
+    """
+    Create two notes with tags 'testing' and 'delete_me'. Attempt to delete
+    them without -m option, should fail. Attempt to delete them with -m option,
+    should succeed.
+    """
+    cmd = "create-note --tag 'testing' --tag 'delete_me' --title "
+    result = pexpect.run(cmd + "'test note 1'")
+    assert "note test note 1 created" in result.decode()
+    result = pexpect.run(cmd + "'test note 2'")
+    assert "note test note 2 created" in result.decode()
+
+    result = pexpect.run("del-notes 'tag:testing tag:delete_me'")
+    assert "0 notes deleted, -m option required" in result.decode()
+
+    result = pexpect.run("del-notes -m 'tag:testing tag:delete_me'")
+    assert "2 notes deleted" in result.decode()
+
+
+# -----------------------------------------------------------------------------
 def test_create_note():
     """
     The script new-note should create a new note with tags, title, and text
