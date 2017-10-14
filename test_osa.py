@@ -104,7 +104,7 @@ def test_create_note():
     cmd = ("create-note --title 'Test Note' --text 'this is a test' "
            "--tag 'testing' --tag 'delete_me'")
     result = pexpect.run(cmd)
-    assert "note 'Test Note' created" in result.decode()
+    assert "note Test Note created" in result.decode()
 
     result = pexpect.run("count-notes 'tag:testing tag:delete_me intitle:Test'")
     assert "notes: 1\r\n" in result.decode()
