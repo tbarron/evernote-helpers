@@ -1,0 +1,6 @@
+.cache
+.env
+DODO
+__pycache__
+*.scpt
+*~
