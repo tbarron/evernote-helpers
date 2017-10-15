@@ -3,26 +3,55 @@
 -- =====================================================================
 on run argv
     set fpath to "/Users/tbarron/prj/evernote_helpers/library.scpt"
-    do shell script "osacompile -o library.scpt library"
-    property lib : load script POSIX file fpath
+    set  lib to load script POSIX file fpath
 
     tell application "Evernote"
-        set note_list to (find notes "intitle:diary tag:template")
-        set old_note to item 1 of note_list
+        -- get a reference to the diary template note
+        set nlist to (find notes "tag:diary tag:template")
+        set template to item 1 of nlist
 
-        set new_title to lib's diary_title(current date)
+        -- find next week with missing days
+        set the_day to (current date)
+        set done to false
+        repeat until done
+            set day_title to lib's diary_title(the_day)
+            set nlist to (find notes "intitle:" & day_title)
+            if (count of nlist) < 1 then
+                set done to true
+            else
+                set the_day to the_day + 24*3600
+            end if
+        end repeat
+        -- do shell script "echo next missing note: " & day_title
 
-        -- set new_note to my duplicate_note(old_note, new_title)
-        set new_note to lib's copy_note(old_note, new_title)
-        open note window with new_note
+        -- create missing notes in the target week
+        set done to false
+        repeat 7 times
+            set nlist to (find notes "intitle:" & day_title)
+            if (count of nlist) < 1 then
+                my duplicate_note(template, ¬
+                                  day_title, ¬
+                                  {"diary", "future", "experimental"}, ¬
+                                  "Journal")
+                -- set new_note to create note title day_title notebook "Journal" ¬
+                --    tags {"diary", "future", "experimental"} ¬
+                --    with text "new diary page"
+            end if
+            set the_day to the_day + 24*3600
+            if weekday of the_day is Monday then
+                exit repeat
+            end if
+            set day_title to lib's diary_title(the_day)
+        end repeat
     end tell
 end run
 
 -- =====================================================================
-on duplicate_note(old_note, new_title)
+on duplicate_note(old_note, new_title, tag_list, nbook)
     tell application "Evernote"
         set my_content to HTML content of old_note
-        set new_note to create note with text "" title new_title notebook "Journal" tags "testing"
+        set new_note to create note with text "" title new_title ¬
+            notebook nbook tags tag_list
         set HTML content of new_note to my_content
     end tell
     return new_note
