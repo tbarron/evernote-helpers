@@ -35,31 +35,33 @@ end run
 
 on safe_rmtag(the_note, the_tag)
     tell application "Evernote"
-        set tag_list to tags of the_note
-        if my is_in(tag_list, the_tag) then
+        try
             unassign the_tag from the_note
-        end if
+        on error msg number nbr
+            -- display dialog "Error: " & msg & " (" & nbr & ")"
+        end try
     end tell
 end safe_rmtag
 
 on safe_addtag(the_note, the_tag)
     tell application "Evernote"
-        set tag_list to tags of the_note
-        if (not(my is_in(tag_list, the_tag))) then
+        try
             assign the_tag to the_note
-        end if
+        on error msg number nbr
+            -- display dialog "Error: " & msg & " (" & nbr & ")"
+        end try
     end tell
 end safe_addtag
 
-on is_in(the_list, the_tag)
-   tell application "Evernote"
-       set rval to false
-       repeat with a_tag in the_list
-           if a_tag is the_tag then
-               set rval to true
-               exit repeat
-           end if
-       end repeat
-       return rval
-   end tell
-end is_in
+--on is_in(the_list, the_tag)
+--   set rval to false
+--   tell application "Evernote"
+--       repeat with a_tag in the_list
+--           if a_tag is the_tag then
+--               set rval to true
+--               exit repeat
+--           end if
+--       end repeat
+--   end tell
+--   return rval
+--end is_in
