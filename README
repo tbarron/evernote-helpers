@@ -1,4 +1,4 @@
-                                            Last updated: <2017-10-16 08:55:04>
+                                            Last updated: <2017-10-16 09:07:53>
 
      = README =
 
@@ -14,7 +14,7 @@
 
      add-tags: Assign a (set of) tags to a (set of) notes
 
-     count-notes
+     count-notes: Count the Evernote notes that match a given query string
 
      create-note
 

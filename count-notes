@@ -1,5 +1,6 @@
 #!/usr/bin/osascript
--- This script counts the Evernote notes that match a given query string
+-- ============================================================================
+-- Count the Evernote notes that match a given query string
 --
 -- Examples:
 --
@@ -7,7 +8,8 @@
 --    count-notes "intitle:diary"
 --    count-notes "intitle:Start tag:current"
 --
--- ============================================================
+-- Note that the query string must be enclosed in quotes if it contains spaces
+-- ============================================================================
 on run argv
     tell application "Evernote"
         set query to item 1 of argv
