@@ -1,0 +1,54 @@
+                                            Last updated: <2017-10-16 08:43:52>
+
+     = README =
+
+     == Introduction ==
+     
+     This directory contains Applescript code for manipulating stuff in my
+     Evernote account. There is a python program that uses the Evernote
+     OAUTH mechanism for accessing Evernote online, but that turned out to
+     be less useful than expected (see "Reasons to prefer Applescript over
+     Python" below).
+
+     == Functions ==
+
+     add-tags
+
+     count-notes
+
+     create-note
+
+     daily-twiddle
+
+     del-notes
+
+     dialog
+
+     library
+
+     make-date
+
+     make-next-week
+
+     note-exists
+
+     rm-tags
+
+     show-notes
+
+     test_osa.py
+
+     == The Python Experiment ==
+     
+     etool.py
+
+     === Reasons to prefer Applescript over Python ===
+
+      * Applescript carries out Evernote interactions directly on the local
+        machine and doesn't need to be authenticated.
+
+      * Applescript is not subject to the bandwidth limits Evernote imposes
+        on online applications.
+
+      * Python interactions require internet access. Applescript
+        interactions do not.

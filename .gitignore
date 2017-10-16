@@ -1,6 +1,13 @@
 .cache
 .env
-DODO
+.python-version
 __pycache__
+cred
+dialog
+DODO
+sandbox.applescript
+venv
 *.scpt
 *~
+.\#*
+\#*
