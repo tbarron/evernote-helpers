@@ -1,4 +1,4 @@
-                                            Last updated: <2017-10-16 11:00:16>
+                                            Last updated: <2017-10-16 11:06:37>
 
      = README =
 
@@ -45,11 +45,13 @@
      README:
          This file
 
-     show-notes
      rm-tags:
          Remove a (set of) tags from a (set of) notes
 
      test_osa.py
+     show-notes:
+         Display a set of notes
+
 
      == The Python Experiment ==
      
