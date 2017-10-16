@@ -1,4 +1,4 @@
-                                            Last updated: <2017-10-16 09:42:25>
+                                            Last updated: <2017-10-16 09:57:14>
 
      = README =
 
@@ -27,9 +27,9 @@
      del-notes:
          Delete notes that match a specified query string
 
-     dialog
+     library:
+         Utility functions used by other scripts
 
-     library
 
      make-date
 
