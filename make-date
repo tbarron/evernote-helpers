@@ -9,11 +9,13 @@
 -- it will add the weekday).
 -- ============================================================================
 on run argv
-    set newline to "
-    "
+    set cwd to (do shell script "pwd")
+    set fpath to cwd & "/library.scpt"
+    set lib to load script POSIX file fpath
+
     set targstr to item 1 of argv
-    set target to ymd_parse(targstr)
-    set result to ymdw_format(target)
+    set target to lib's ymd_parse(targstr)
+    set result to lib's ymdw_format(target)
     do shell script "echo " & result
     -- do shell script "echo len of arg is " & length of item 1 of argv
     -- do shell script "echo " & ymdhms(current date)
@@ -46,70 +48,3 @@ on run argv
 --            & "; month = " & 1*m & "; day = " & d
 --    end tell
 end run
-
--- ============================================================================
--- Parse a date in the format "YYYY.mmdd [HH:MM[:SS]]"
---
-on ymd_parse(D)
-    -- D must be a date string of the format
-    --    YYYY.mmdd [HH:MM[:SS]]
-    set rval to (current date)
-    set rval's year to (text 1 thru 4 of D)
-    set rval's month to (text 6 thru 7 of D)
-    set rval's day to (text 8 thru 9 of D)
-
-    if length of D is greater than or equal to 12 then
-        set rval's hours to (text 11 thru 12 of D)
-        if length of D is greater than or equal to 15 then
-            set rval's minutes to (text 14 thru 15 of D)
-            if length of D is greater than or equal to 18 then
-                set rval's seconds to (text 17 thru 18 of D)
-            end if
-        end if
-    end if
-    return rval
-end ymd_parse
-
--- ============================================================================
--- Return a date in the format "YYYY.mmdd.sun"
---
-on ymdw_format(dateobj)
-    set {year:y, month:m, day:d, hours:H, minutes:N, seconds:S, weekday:w} ¬
-        to dateobj
-    set wkd to lowercase(substring(w as string, 1, 3))
-    set mnum to zpad(1*m)
-    set d to zpad(d)
-    set H to zpad(H)
-    set N to zpad(N)
-    set S to zpad(S)
-    set rval to y & "." & mnum & d & "." & wkd
-    return rval
-end ymdw_format
-
--- ============================================================================
--- Pad a single digit number with a leading zero (available in libary)
---
-on zpad(N)
-    set rval to "" & N
-    if length of rval is less than 2 then
-        set rval to "0" & rval
-    end if
-    return rval
-end zpad
-
--- ============================================================================
--- Lowercase a string (available in libary)
---
-on lowercase(this_text)
-    set rval to do shell script "echo " & quoted form of (this_text) & ¬
-        " | tr A-Z a-z"
-    return rval as string
-end lowercase
-
--- ============================================================================
--- Extract a substring (available in libary)
---
-on substring(source, schar, lchar)
-    set rval to (text schar thru lchar of source)
-    return rval as string
-end substring

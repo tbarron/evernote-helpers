@@ -57,6 +57,45 @@ on substring(source, schar, lchar)
 end substring
 
 -- ============================================================================
+-- Parse a date in the format "YYYY.mmdd [HH:MM[:SS]]"
+--
+on ymd_parse(D)
+    -- D must be a date string of the format
+    --    YYYY.mmdd [HH:MM[:SS]]
+    set rval to (current date)
+    set rval's year to (text 1 thru 4 of D)
+    set rval's month to (text 6 thru 7 of D)
+    set rval's day to (text 8 thru 9 of D)
+
+    if length of D is greater than or equal to 12 then
+        set rval's hours to (text 11 thru 12 of D)
+        if length of D is greater than or equal to 15 then
+            set rval's minutes to (text 14 thru 15 of D)
+            if length of D is greater than or equal to 18 then
+                set rval's seconds to (text 17 thru 18 of D)
+            end if
+        end if
+    end if
+    return rval
+end ymd_parse
+
+-- ============================================================================
+-- Return a date in the format "YYYY.mmdd.sun"
+--
+on ymdw_format(dateobj)
+    set {year:y, month:m, day:d, hours:H, minutes:N, seconds:S, weekday:w} ¬
+        to dateobj
+    set wkd to lowercase(substring(w as string, 1, 3))
+    set mnum to zpad(1*m)
+    set d to zpad(d)
+    set H to zpad(H)
+    set N to zpad(N)
+    set S to zpad(S)
+    set rval to y & "." & mnum & d & "." & wkd
+    return rval
+end ymdw_format
+
+-- ============================================================================
 -- Pad a single digit number with a leading zero
 --
 on zpad(N)
