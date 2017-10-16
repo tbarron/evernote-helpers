@@ -1,6 +1,13 @@
 #!/usr/bin/osascript
-
--- ============================================================
+-- ============================================================================
+-- Checks whether a specified query string matches at least one note
+--
+-- Usage: note-exists "QUERY"
+--
+-- If the query string contains spaces, it must be enclosed in quotes.
+-- If one or more notes are matched, the script reports "true".
+-- Otherwise, it reports "false".
+-- ============================================================================
 on run argv
     tell application "Evernote"
         set query to item 1 of argv

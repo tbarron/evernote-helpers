@@ -1,4 +1,4 @@
-                                            Last updated: <2017-10-16 10:48:48>
+                                            Last updated: <2017-10-16 10:54:30>
 
      = README =
 
@@ -39,7 +39,8 @@
      Makefile:
          Command for regenerating library.scpt from library
 
-     note-exists
+     note-exists:
+         Checks whether a specified query string matches at least one note
 
      rm-tags
 
