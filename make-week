@@ -10,22 +10,28 @@
 on run argv
     set fpath to "/Users/tbarron/prj/evernote_helpers/library.scpt"
     set lib to load script POSIX file fpath
+    set nb_name to "Journal"
+    set nb_name to "Test Journal"
 
     tell application "Evernote"
+        lib's ensure_notebook(nb_name)
+
         -- get a reference to the diary template note
-        set nlist to (find notes "tag:diary tag:template")
-        set template to item 1 of nlist
+        -- set nlist to (find notes "tag:diary tag:template")
+        -- set template to item 1 of nlist
 
         -- find next week with missing days
         set the_day to (current date)
+        set day_title to lib's diary_title(the_day)
         set done to false
         repeat until done
-            set day_title to lib's diary_title(the_day)
-            set nlist to (find notes "intitle:" & day_title)
+            set nlist to (find notes "intitle:" & day_title ¬
+                & " notebook:\"" & nb_name & "\"")
             if (count of nlist) < 1 then
                 set done to true
             else
                 set the_day to the_day + 24*3600
+                set day_title to lib's diary_title(the_day)
             end if
         end repeat
         -- do shell script "echo next missing note: " & day_title
@@ -33,21 +39,26 @@ on run argv
         -- create missing notes in the target week
         set done to false
         repeat 7 times
-            set nlist to (find notes "intitle:" & day_title)
+            -- get the template note
+            set wkd to (weekday of the_day as string)
+            set tlist to (find notes "tag:diary tag:template intitle:" & wkd)
+            set template to item 1 of tlist
+
+            set nlist to (find notes "tag:diary notebook:\"" & nb_name & "\" intitle:" & day_title)
             if (count of nlist) < 1 then
                 my duplicate_note(template, ¬
                                   day_title, ¬
                                   {"diary", "future", "experimental"}, ¬
-                                  "Journal")
+                                  nb_name)
                 -- set new_note to create note title day_title notebook "Journal" ¬
                 --    tags {"diary", "future", "experimental"} ¬
                 --    with text "new diary page"
             end if
             set the_day to the_day + 24*3600
+            set day_title to lib's diary_title(the_day)
             if weekday of the_day is Monday then
                 exit repeat
             end if
-            set day_title to lib's diary_title(the_day)
         end repeat
     end tell
 end run

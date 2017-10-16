@@ -29,6 +29,17 @@ on diary_title(the_date)
 end diary_title
 
 -- ============================================================================
+-- Ensure that notebook *nb_name* exists
+--
+on ensure_notebook(nb_name)
+    tell application "Evernote"
+        if not exists notebook named nb_name
+            create notebook nb_name
+        end if
+    end tell
+end ensure_notebook
+
+-- ============================================================================
 -- Return the lowercase version of *this_text*
 --
 on lowercase(this_text)
