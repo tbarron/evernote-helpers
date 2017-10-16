@@ -1,4 +1,4 @@
-                                            Last updated: <2017-10-16 11:09:32>
+                                            Last updated: <2017-10-16 13:07:40>
 
      = README =
 
@@ -55,8 +55,36 @@
          Test Applescript/Evernote interaction code
 
      == The Python Experiment ==
-     
-     etool.py
+
+     I tried using python to manipulate Evernote. The code is in etool.py.
+     That requires using oauth authentication and authorization. etool has
+     a 'get_token' function that lets you interact with Evernote to
+     authorize the app and generate an API key that can then be used for
+     specified time period to access the account on behalf of the user.
+
+     Other functions include create_notebook (incomplete), list_notes,
+     and list_notebooks.
+
+     === The 'cred' file ===
+
+     The cred file has the following format:
+
+         [basic]
+         key: <consumer-key>
+         secret: <consumer-secret>
+         token: <API-token>
+
+         [full]
+         key: <consumer-key>
+         secret: <consumer-secret>
+         token: <API-token>
+
+     The first stanza allows basic access, which creating notebooks and
+     notes but does not support examining or manipulating existing notes.
+     The second stanza provides full access. In each case, the key and
+     secret are obtained from the Evernote website in a manual interaction
+     and then used to request an API token with the etool get_token
+     function.
 
      === Reasons to prefer Applescript over Python ===
 
@@ -68,3 +96,8 @@
 
       * Python interactions require internet access. Applescript
         interactions do not.
+
+      * Using oauth on Evernote for full access to production requires
+        justifying the level of access your app requires. With Applescript,
+        all the functions are immediately available without having to
+        justify anything to anybody.
