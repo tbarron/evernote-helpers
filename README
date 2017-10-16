@@ -1,9 +1,9 @@
-                                            Last updated: <2017-10-16 09:57:14>
+                                            Last updated: <2017-10-16 10:07:46>
 
      = README =
 
      == Introduction ==
-     
+
      This directory contains Applescript code for manipulating stuff in my
      Evernote account. There is a python program that uses the Evernote
      OAUTH mechanism for accessing Evernote online, but that turned out to
@@ -30,8 +30,9 @@
      library:
          Utility functions used by other scripts
 
+     make-date:
+         Date manipulation code for testing and examples
 
-     make-date
 
      make-next-week
 
