@@ -1,3 +1,8 @@
+"""
+Test Applescript/Evernote interaction code
+
+Run this file with the command 'py.test'
+"""
 import pexpect
 import re
 
