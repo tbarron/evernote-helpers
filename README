@@ -42,11 +42,12 @@
      note-exists:
          Checks whether a specified query string matches at least one note
 
-     rm-tags
      README:
          This file
 
      show-notes
+     rm-tags:
+         Remove a (set of) tags from a (set of) notes
 
      test_osa.py
 
