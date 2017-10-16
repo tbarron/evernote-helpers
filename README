@@ -1,4 +1,4 @@
-                                            Last updated: <2017-10-16 09:31:56>
+                                            Last updated: <2017-10-16 09:42:25>
 
      = README =
 
@@ -24,7 +24,8 @@
      daily-twiddle:
          Shift tags on notes for today and yesterday
 
-     del-notes
+     del-notes:
+         Delete notes that match a specified query string
 
      dialog
 

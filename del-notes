@@ -1,5 +1,13 @@
 #!/usr/bin/osascript
-
+-- ============================================================================
+-- Delete notes that match a specified query string
+--
+-- Usage: del-notes [-m|--multiple] "QUERY"
+--
+-- If QUERY matches more than one note and -m or --multiple is not present,
+-- the script fails with the message "no notes deleted, --multiple
+-- required"
+-- ============================================================================
 on run argv
     set smult to "-m"
     set lmult to "-" & "-" & "multiple"
@@ -20,7 +28,7 @@ on run argv
         if (count of note_list) is 0 then
             do shell script "echo no notes match " & query_string
         else if (count of note_list) is greater than 1 and not multiple then
-            do shell script "echo 0 notes deleted, --multiple required"
+            do shell script "echo no notes deleted, --multiple required"
         else
             repeat with my_note in note_list
                 set my_win to open note window with my_note
