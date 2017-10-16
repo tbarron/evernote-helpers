@@ -1,4 +1,11 @@
 #!/usr/bin/osascript
+-- ============================================================================
+-- Shift tags on notes for today and yesterday
+--
+-- Usage: daily-twiddle
+--
+-- It is safe to run this script multiple times in the same day.
+-- ============================================================================
 on run argv
     set cwd to (do shell script "pwd")
     set fpath to cwd & "/library.scpt"

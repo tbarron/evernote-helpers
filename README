@@ -1,4 +1,4 @@
-                                            Last updated: <2017-10-16 09:19:13>
+                                            Last updated: <2017-10-16 09:31:56>
 
      = README =
 
@@ -21,7 +21,8 @@
      create-note:
          Create a new note based on the command line args
 
-     daily-twiddle
+     daily-twiddle:
+         Shift tags on notes for today and yesterday
 
      del-notes
 
