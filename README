@@ -1,4 +1,4 @@
-                                            Last updated: <2017-10-16 10:07:46>
+                                            Last updated: <2017-10-16 10:42:43>
 
      = README =
 
@@ -33,8 +33,9 @@
      make-date:
          Date manipulation code for testing and examples
 
+     make-week:
+         Create a week's worth of diary notes
 
-     make-next-week
 
      note-exists
 

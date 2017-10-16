@@ -1,9 +1,15 @@
 #!/usr/bin/osascript
-
--- =====================================================================
+-- ============================================================================
+-- Create a week's worth of diary notes
+--
+-- Usage: make-week [next|2017.1201]
+--
+-- With the argument "next", fill in the next week that has gaps. With a
+-- specific date, generate (or regenerate) the week containing that date
+-- ============================================================================
 on run argv
     set fpath to "/Users/tbarron/prj/evernote_helpers/library.scpt"
-    set  lib to load script POSIX file fpath
+    set lib to load script POSIX file fpath
 
     tell application "Evernote"
         -- get a reference to the diary template note
