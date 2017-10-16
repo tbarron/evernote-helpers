@@ -1,4 +1,13 @@
 #!/usr/bin/osascript
+-- ======================================================================
+-- Assign a (set of) tags to a (set of) notes
+--
+-- Usage: add-tags [-m|--multiple] "QUERY" tag1 tag2 ...
+--
+-- If QUERY matches more than one note and -m/--multiple is not present,
+-- the script fails with the message "too many notes matched, --multiple
+-- required".
+-- ======================================================================
 on run argv
     set multiple to false
     set clean_args to {}
