@@ -1,4 +1,4 @@
-                                            Last updated: <2017-10-16 10:42:43>
+                                            Last updated: <2017-10-16 10:48:48>
 
      = README =
 
@@ -36,6 +36,8 @@
      make-week:
          Create a week's worth of diary notes
 
+     Makefile:
+         Command for regenerating library.scpt from library
 
      note-exists
 
