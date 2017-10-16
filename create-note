@@ -1,11 +1,15 @@
 #!/usr/bin/osascript
--- This script creates a new Evernote note based on command line args
+-- ============================================================================
+-- Creates a new note based on the command line args
 --
 -- Examples:
 --
---    create-note --title "Foobar" --text "this goes in the body" --tag "fiddle"
+--    create-note --title "Foobar" --text "in the note body" --tag "fiddle"
 --
--- ============================================================
+-- An option string like "--title --text frobnicate" would confuse this
+-- code. When setting note_title, text_str, etc., need to check for '--' on
+-- the argument.
+-- ============================================================================
 on run argv
     set newline to "\n"
     set tag_list to {}

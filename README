@@ -1,4 +1,4 @@
-                                            Last updated: <2017-10-16 09:07:53>
+                                            Last updated: <2017-10-16 09:19:13>
 
      = README =
 
@@ -12,11 +12,14 @@
 
      == Contents ==
 
-     add-tags: Assign a (set of) tags to a (set of) notes
+     add-tags:
+         Assign a (set of) tags to a (set of) notes
 
-     count-notes: Count the Evernote notes that match a given query string
+     count-notes:
+         Count the Evernote notes that match a given query string
 
-     create-note
+     create-note:
+         Create a new note based on the command line args
 
      daily-twiddle
 
