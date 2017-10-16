@@ -1,4 +1,4 @@
-                                            Last updated: <2017-10-16 10:54:30>
+                                            Last updated: <2017-10-16 11:00:16>
 
      = README =
 
@@ -43,6 +43,8 @@
          Checks whether a specified query string matches at least one note
 
      rm-tags
+     README:
+         This file
 
      show-notes
 
