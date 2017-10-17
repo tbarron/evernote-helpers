@@ -2,38 +2,62 @@
 -- ============================================================================
 -- Create a week's worth of diary notes
 --
--- Usage: make-week [next|2017.1201]
+-- Usage: make-week { next|[-o|--overwrite] yyyy.mmdd }
 --
 -- With the argument "next", fill in the next week that has gaps. With a
--- specific date, generate (or regenerate) the week containing that date
+-- specific date, generate (or regenerate) the week containing that date.
+-- If -o or --overwrite is specified, the indicated week will be completely
+-- overwritten with the template contents. The --overwrite option and the
+-- "next" week specifier are not compatible. Trying to use them together
+-- will cause the script to fail with an error.
 -- ============================================================================
 on run argv
     set fpath to "/Users/tbarron/prj/evernote_helpers/library.scpt"
     set lib to load script POSIX file fpath
+    set overwrite to false
+    set which_week to ""
     set nb_name to "Journal"
-    set nb_name to "Test Journal"
+
+    repeat with arg in argv
+        if arg as string is "-o" or arg as string is "--overwrite" then
+            set overwrite to true
+        else if arg as string is "next" then
+            set which_week to "next"
+        else
+            set which_week to arg
+        end if
+    end repeat
+    if which_week is "" then
+        error "'next' or YYYY.mmdd required"
+    else if which_week is "next" and overwrite then
+        error "'next' and --overwrite conflict"
+    end if
 
     tell application "Evernote"
         lib's ensure_notebook(nb_name)
+        if which_week is "next" then
+            -- find next week with missing days
+            set the_day to (current date)
+            set day_title to lib's diary_title(the_day)
+            set done to false
+            repeat until done
+                set nlist to (find notes "intitle:" & day_title ¬
+                    & " notebook:\"" & nb_name & "\"")
+                if (count of nlist) < 1 then
+                    set done to true
+                else
+                    set the_day to the_day + 24*3600
+                    set day_title to lib's diary_title(the_day)
+                end if
+            end repeat
+        else
+            set the_day to lib's ymd_parse(which_week)
+            repeat until weekday of the_day is Monday
+               set the_day to (the_day - 24*3600)
+               set day_title to lib's diary_title(the_day)
+            end repeat
+        end if
 
-        -- find next week with missing days
-        set the_day to (current date)
-        set day_title to lib's diary_title(the_day)
-        set done to false
-        repeat until done
-            set nlist to (find notes "intitle:" & day_title ¬
-                & " notebook:\"" & nb_name & "\"")
-            if (count of nlist) < 1 then
-                set done to true
-            else
-                set the_day to the_day + 24*3600
-                set day_title to lib's diary_title(the_day)
-            end if
-        end repeat
-        -- do shell script "echo next missing note: " & day_title
-
-        -- create missing notes in the target week
-        set done to false
         repeat 7 times
             -- get the template note
             set wkd to (weekday of the_day as string)
@@ -46,9 +70,9 @@ on run argv
                                   day_title, ¬
                                   {"diary", "future", "experimental"}, ¬
                                   nb_name)
-                -- set new_note to create note title day_title notebook "Journal" ¬
-                --    tags {"diary", "future", "experimental"} ¬
-                --    with text "new diary page"
+            else if overwrite then
+                set targ_note to item 1 of nlist
+                set HTML content of targ_note to HTML content of template
             end if
             set the_day to the_day + 24*3600
             set day_title to lib's diary_title(the_day)
