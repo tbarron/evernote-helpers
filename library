@@ -29,6 +29,20 @@ on diary_title(the_date)
 end diary_title
 
 -- ============================================================================
+-- Copy the content of *old_note* into a new note titled *new_title* with
+-- the tags in *tag_list* in notebook *nbook*.
+--
+on duplicate_note(old_note, new_title, tag_list, nbook)
+    tell application "Evernote"
+        set my_content to HTML content of old_note
+        set new_note to create note with text "" title new_title ¬
+            notebook nbook tags tag_list
+        set HTML content of new_note to my_content
+    end tell
+    return new_note
+end duplicate_note
+
+-- ============================================================================
 -- Ensure that notebook *nb_name* exists
 --
 on ensure_notebook(nb_name)

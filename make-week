@@ -16,10 +16,6 @@ on run argv
     tell application "Evernote"
         lib's ensure_notebook(nb_name)
 
-        -- get a reference to the diary template note
-        -- set nlist to (find notes "tag:diary tag:template")
-        -- set template to item 1 of nlist
-
         -- find next week with missing days
         set the_day to (current date)
         set day_title to lib's diary_title(the_day)
@@ -46,7 +42,7 @@ on run argv
 
             set nlist to (find notes "tag:diary notebook:\"" & nb_name & "\" intitle:" & day_title)
             if (count of nlist) < 1 then
-                my duplicate_note(template, ¬
+                lib's duplicate_note(template, ¬
                                   day_title, ¬
                                   {"diary", "future", "experimental"}, ¬
                                   nb_name)
@@ -62,14 +58,3 @@ on run argv
         end repeat
     end tell
 end run
-
--- =====================================================================
-on duplicate_note(old_note, new_title, tag_list, nbook)
-    tell application "Evernote"
-        set my_content to HTML content of old_note
-        set new_note to create note with text "" title new_title ¬
-            notebook nbook tags tag_list
-        set HTML content of new_note to my_content
-    end tell
-    return new_note
-end duplicate_note
