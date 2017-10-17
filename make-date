@@ -15,6 +15,7 @@ on run argv
 
     set targstr to item 1 of argv
     set target to lib's ymd_parse(targstr)
+    set target to target + 24*3600
     set result to lib's ymdw_format(target)
     do shell script "echo " & result
     -- do shell script "echo len of arg is " & length of item 1 of argv
