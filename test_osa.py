@@ -13,8 +13,8 @@ def test_make_date_noarg():
     make-date with no arg spits out an error
     """
     result = pexpect.run("make-date")
-    assert "execution error:" in result.decode()
-    assert "t get item 1 of {}." in result.decode()
+    assert "execution error:".encode() in result
+    assert "t get item 1 of {}.".encode() in result
 
 
 # -----------------------------------------------------------------------------
@@ -104,7 +104,7 @@ def test_del_notes_nomult():
     assert "note test note 2 created" in result.decode()
 
     result = pexpect.run("del-notes 'tag:testing tag:delete_me'")
-    assert "0 notes deleted, --multiple required" in result.decode()
+    assert "no notes deleted, --multiple required" in result.decode()
 
     result = pexpect.run("del-notes -m 'tag:testing tag:delete_me'")
     assert "2 notes deleted" in result.decode()
