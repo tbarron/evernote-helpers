@@ -1,6 +1,6 @@
-                                            Last updated: <2017-10-16 13:07:40>
+                                            Last updated: <2017-10-17 10:35:31>
 
-     = README =
+     = README: Evernote Helpers =
 
      == Introduction ==
 
@@ -32,6 +32,9 @@
 
      make-date:
          Date manipulation code for testing and examples
+
+     make-day:
+         Create a day note based on the relevant template
 
      make-week:
          Create a week's worth of diary notes

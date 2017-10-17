@@ -1,0 +1,34 @@
+#!/usr/bin/osascript
+-- ============================================================================
+-- (Re-)create the diary note for a specified day
+--
+-- Usage: make-day yyyy.mmdd
+--
+-- The date is required. A new note will be generated with the template
+-- contents appropriate for the given day.
+-- ============================================================================
+on run argv
+    set fpath to "/Users/tbarron/prj/evernote_helpers/library.scpt"
+    set lib to load script POSIX file fpath
+
+    tell application "Evernote"
+        set the_date to lib's ymd_parse(item 1 of argv)
+        set day_title to lib's diary_title(the_date)
+        set wkd to (weekday of the_date)
+
+        if the_date is greater than (current date) then
+            set tag_list to { "future", "diary" }
+        else
+            set tag_list to { "past", "diary" }
+        end if
+
+        set tlist to (find notes "tag:diary tag:template intitle:" & wkd)
+        set template to (item 1 of tlist)
+        set my_content to html content of template
+        set new_note to (create note title day_title ¬
+                                     tags tag_list ¬
+                                     notebook "Journal" ¬
+                                     with html my_content)
+        open note window with new_note
+    end tell
+end run
