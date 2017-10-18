@@ -23,8 +23,8 @@ on run argv
         else
             set yester_note to item 1 of nlist
             set taglist to (tags of yester_note)
-            my safe_rmtag(yester_note, tag named "today")
-            my safe_addtag(yester_note, tag named "past")
+            lib's safe_rmtag(yester_note, tag named "today")
+            lib's safe_addtag(yester_note, tag named "past")
         end if
 
         set query to "intitle:" & today_title
@@ -33,42 +33,9 @@ on run argv
             do shell script "echo " & today_title & " matches multiple notes"
         else
             set today_note to item 1 of nlist
-            my safe_rmtag(today_note, tag named "future")
-            my safe_addtag(today_note, tag named "today")
-            my safe_addtag(today_note, tag named "current")
+            lib's safe_rmtag(today_note, tag named "future")
+            lib's safe_addtag(today_note, tag named "today")
+            lib's safe_addtag(today_note, tag named "current")
         end if
     end tell
 end run
-
-on safe_rmtag(the_note, the_tag)
-    tell application "Evernote"
-        try
-            unassign the_tag from the_note
-        on error msg number nbr
-            -- display dialog "Error: " & msg & " (" & nbr & ")"
-        end try
-    end tell
-end safe_rmtag
-
-on safe_addtag(the_note, the_tag)
-    tell application "Evernote"
-        try
-            assign the_tag to the_note
-        on error msg number nbr
-            -- display dialog "Error: " & msg & " (" & nbr & ")"
-        end try
-    end tell
-end safe_addtag
-
---on is_in(the_list, the_tag)
---   set rval to false
---   tell application "Evernote"
---       repeat with a_tag in the_list
---           if a_tag is the_tag then
---               set rval to true
---               exit repeat
---           end if
---       end repeat
---   end tell
---   return rval
---end is_in

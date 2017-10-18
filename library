@@ -62,6 +62,32 @@ on lowercase(this_text)
 end lowercase
 
 -- ============================================================================
+-- Add *the_tag* to *the_note* if it's not already there
+--
+on safe_addtag(the_note, the_tag)
+    tell application "Evernote"
+        try
+            assign the_tag to the_note
+        on error msg number nbr
+            -- display dialog "Error: " & msg & " (" & nbr & ")"
+        end try
+    end tell
+end safe_addtag
+
+-- ============================================================================
+-- Remove *the_tag* from *the_note* if it's there
+--
+on safe_rmtag(the_note, the_tag)
+    tell application "Evernote"
+        try
+            unassign the_tag from the_note
+        on error msg number nbr
+            -- display dialog "Error: " & msg & " (" & nbr & ")"
+        end try
+    end tell
+end safe_rmtag
+
+-- ============================================================================
 -- Return the substring of *source* (a string) beginning at *schar* (a
 -- number) and going through *lchar* (a number)
 --
