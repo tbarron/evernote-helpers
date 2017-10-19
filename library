@@ -120,6 +120,21 @@ on ymd_parse(D)
 end ymd_parse
 
 -- ============================================================================
+-- Return a date in the format "YYYY.mmdd"
+--
+on ymd_format(dateobj)
+    set {year:y, month:m, day:d, hours:H, minutes:N, seconds:S, weekday:w} ¬
+        to dateobj
+    set mnum to zpad(1*m)
+    set d to zpad(d)
+    set H to zpad(H)
+    set N to zpad(N)
+    set S to zpad(S)
+    set rval to y & "." & mnum & d
+    return rval
+end ymd_format
+
+-- ============================================================================
 -- Return a date in the format "YYYY.mmdd.sun"
 --
 on ymdw_format(dateobj)
