@@ -1,0 +1,76 @@
+#!/usr/bin/osascript
+-- ============================================================================
+-- Possibly update the title of each note that matches the query string
+--
+-- Usage: retitle [-y|--yes] "QUERY"
+--
+-- For each note that matches QUERY, if the note title already begins with
+-- "YYYY.mmdd: ", leave it alone.
+--
+-- Otherwise, get the note's creation date, format it as "YYYY.mmdd: ", and
+-- add it to the beginning of the title.
+--
+-- If the query matches a single note, the note title will be updated without
+-- asking for confirmation.
+--
+-- If the query matches multiple notes, the user will be prompted to
+-- confirm the update to each note.
+--
+-- If the user specifies -y or --yes on the command line, no confirmation
+-- will be requested even if multiple notes are matched and updated.
+-- ============================================================================
+on run argv
+    set cwd to (do shell script "pwd")
+    set fpath to cwd & "/library.scpt"
+    set lib to load script POSIX file fpath
+
+    set confirmed to false
+    set report_count to false
+    set clean_args to {}
+    repeat with arg in argv
+        if (arg as string) is "-y" or (arg as string) is "--yes" then
+            set confirmed to true
+        else
+            set end of clean_args to arg
+        end if
+    end repeat
+
+    activate application "Evernote"
+    set query to item 1 of clean_args
+    set updated to 0
+    tell application "Evernote"
+        set nlist to (find notes query)
+        set ncount to count of nlist
+        set which to 1
+        repeat with the_note in nlist
+            set the_title to title of the_note
+            -- display dialog ntitle
+            set cmd to "echo \"" & the_title & "\""
+            set cmd to cmd & " | sed -E -e \"s/^[0-9]{4}\\.[0-9]{4}//\""
+            set xtitle to (do shell script cmd)
+            -- display dialog xtitle
+            if xtitle is the_title then
+                --  add the prefix
+                -- display dialog "add the prefix for '" & ntitle & "'"
+                set the_date to creation date of the_note
+                set prefix to lib's ymd_format(the_date) as string
+                set new_title to prefix & ": " & the_title
+                if count of nlist is 1 or confirmed then
+                    set title of the_note to new_title
+                    set updated to updated + 1
+                else
+                    set dmsg to "(" & which & "/" & ncount & ") apply new title '" ¬
+                        & new_title & "'?"
+                    display dialog dmsg buttons {"yes", "no", "quit"}
+                    if the button returned of the result is "yes" then
+                        set title of the_note to new_title
+                        set updated to updated + 1
+                    else if the button returned of the result is "quit" then
+                        exit repeat
+                    end if
+                end if
+            end if
+        end repeat
+        do shell script "echo " & updated & " notes updated"
+    end tell
+end run
