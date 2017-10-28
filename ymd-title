@@ -59,8 +59,10 @@ on run argv
                     set title of the_note to new_title
                     set updated to updated + 1
                 else
-                    set dmsg to "(" & which & "/" & ncount & ") apply new title '" ¬
+                    set dmsg to "(" & which & "/" & ncount ¬
+                        & ") apply new title '" ¬
                         & new_title & "'?"
+                    set which to (which + 1)
                     display dialog dmsg buttons {"yes", "no", "quit"}
                     if the button returned of the result is "yes" then
                         set title of the_note to new_title
