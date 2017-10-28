@@ -24,11 +24,10 @@ on run argv
 
         set tlist to (find notes "tag:diary tag:template intitle:" & wkd)
         set template to (item 1 of tlist)
-        set my_content to html content of template
-        set new_note to (create note title day_title ¬
-                                     tags tag_list ¬
-                                     notebook "Journal" ¬
-                                     with html my_content)
-        open note window with new_note
+
+        open note window with lib's duplicate_note(template, ¬
+                                                   day_title, ¬
+                                                   tag_list, ¬
+                                                   "Journal")
     end tell
 end run
