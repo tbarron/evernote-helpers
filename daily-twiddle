@@ -27,5 +27,18 @@ on run argv
         if (count of tlist) is greater than 1 then
             display dialog "'" & today_title & "' matches multiple notes"
         end if
+
+        set yester_note to item 1 of ylist
+        lib's safe_rmtag(yester_note, tag named "today")
+        lib's safe_addtag(yester_note, tag named "past")
+
+        set today_note to item 1 of tlist
+        lib's safe_rmtag(today_note, tag named "future")
+        lib's safe_addtag(today_note, tag named "today")
+        lib's safe_addtag(today_note, tag named "current")
+
+        set yester_window to open note window with yester_note
+        close yester_window
+        open note window with today_note
     end tell
 end run
