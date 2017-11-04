@@ -15,6 +15,7 @@ on run argv
     set yesterdate to (current date) - 24*3600
     set yester_title to lib's diary_title(yesterdate)
 
+    activate application "Evernote"
     tell application "Evernote"
         set query to "intitle:" & yester_title
         set ylist to (find notes query)
