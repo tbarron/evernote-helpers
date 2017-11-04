@@ -1,0 +1,27 @@
+#!/usr/bin/osascript
+-- ============================================================================
+-- Create a todo note
+--
+-- Usage: make-todo Note title
+--
+-- Put the new note in notebook 'todo' with tags 'home' and 'next'.
+-- Format the title as 'YYYY.mmdd: Note title'
+-- Open the note in a new window
+-- ============================================================================
+on run argv
+    set cwd to (do shell script "pwd")
+    set fpath to cwd & "/library.scpt"
+    set lib to load script POSIX file fpath
+    activate application "Evernote"
+    tell application "Evernote"
+        set note_title to lib's ymd_format(current date) as string
+        set note_title to note_title & ":"
+        repeat with arg in argv
+            set note_title to note_title & " " & arg as string
+        end repeat
+        open note window with (create note title note_title ¬
+                                           notebook "todo" ¬
+                                           with text " " ¬
+                                           tags {"home", "next"})
+    end tell
+end run
