@@ -23,14 +23,9 @@ on run argv
         end if
 
         set query to "intitle:" & today_title
-        set nlist to (find notes query)
-        if (count of nlist) is greater than 1 then
-            do shell script "echo " & today_title & " matches multiple notes"
-        else
-            set today_note to item 1 of nlist
-            lib's safe_rmtag(today_note, tag named "future")
-            lib's safe_addtag(today_note, tag named "today")
-            lib's safe_addtag(today_note, tag named "current")
+        set tlist to (find notes query)
+        if (count of tlist) is greater than 1 then
+            display dialog "'" & today_title & "' matches multiple notes"
         end if
     end tell
 end run
