@@ -38,8 +38,8 @@ on run argv
         lib's safe_addtag(today_note, tag named "today")
         lib's safe_addtag(today_note, tag named "current")
 
-        set yester_window to open note window with yester_note
-        close yester_window
+        -- set yester_window to open note window with yester_note
+        -- close yester_window
         open note window with today_note
     end tell
 end run
