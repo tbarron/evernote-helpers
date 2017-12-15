@@ -68,7 +68,7 @@ on run argv
             if (count of nlist) < 1 then
                 lib's duplicate_note(template, ¬
                                   day_title, ¬
-                                  {"diary", "future", "experimental"}, ¬
+                                  {"diary", "future"}, ¬
                                   nb_name)
             else if overwrite then
                 set targ_note to item 1 of nlist
