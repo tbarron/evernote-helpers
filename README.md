@@ -1,6 +1,6 @@
-                                            Last updated: <2017-12-22 10:38:39>
 
 # README: Evernote Helpers
+Last updated: <2017-12-22 10:40:23>
 
 ## Introduction
 
@@ -10,9 +10,9 @@ mechanism for accessing Evernote online, but that turned out to be less
 useful than expected (see "Reasons to prefer Applescript over Python"
 below).
 
-     == Contents ==
+## Contents
 
-     add-tags:
+add-tags:
          Assign a (set of) tags to a (set of) notes
 
      count-notes:
