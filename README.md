@@ -1,6 +1,6 @@
 
 # README: Evernote Helpers
-Last updated: <2017-12-22 12:05:54>
+Last updated: <2017-12-22 12:07:04>
 
 ## Introduction
 
@@ -17,16 +17,13 @@ below).
     * Assign a (set of) tags to a (set of) notes
 
  * count-notes:
-
-       Count the Evernote notes that match a given query string
+    * Count the Evernote notes that match a given query string
 
  * create-note:
-
-    Create a new note based on the command line args
+    * Create a new note based on the command line args
 
  * daily-twiddle:
-
-    Shift tags on notes for today and yesterday
+    * Shift tags on notes for today and yesterday
 
  * del-notes:
 
