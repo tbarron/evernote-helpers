@@ -1,6 +1,6 @@
 
 # README: Evernote Helpers
-Last updated: <2017-12-22 12:04:18>
+Last updated: <2017-12-22 12:05:54>
 
 ## Introduction
 
@@ -14,7 +14,7 @@ below).
 
  * add-tags:
 
- ** Assign a (set of) tags to a (set of) notes
+    * Assign a (set of) tags to a (set of) notes
 
  * count-notes:
 
