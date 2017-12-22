@@ -1,6 +1,6 @@
 
 # README: Evernote Helpers
-Last updated: <2017-12-22 10:42:59>
+Last updated: <2017-12-22 12:02:09>
 
 ## Introduction
 
@@ -12,13 +12,12 @@ below).
 
 ## Contents
 
-add-tags:
+ * add-tags:
+ ** Assign a (set of) tags to a (set of) notes
 
-    Assign a (set of) tags to a (set of) notes
+ * count-notes:
 
-count-notes:
-
-    Count the Evernote notes that match a given query string
+       Count the Evernote notes that match a given query string
 
 create-note:
 
