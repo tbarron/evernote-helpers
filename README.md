@@ -1,14 +1,14 @@
-                                            Last updated: <2017-10-17 10:35:31>
+                                            Last updated: <2017-12-22 10:38:39>
 
-     = README: Evernote Helpers =
+# README: Evernote Helpers
 
-     == Introduction ==
+## Introduction
 
-     This directory contains Applescript code for manipulating stuff in my
-     Evernote account. There is a python program that uses the Evernote
-     OAUTH mechanism for accessing Evernote online, but that turned out to
-     be less useful than expected (see "Reasons to prefer Applescript over
-     Python" below).
+This directory contains Applescript code for manipulating stuff in my
+Evernote account. There is a python program that uses the Evernote OAUTH
+mechanism for accessing Evernote online, but that turned out to be less
+useful than expected (see "Reasons to prefer Applescript over Python"
+below).
 
      == Contents ==
 
