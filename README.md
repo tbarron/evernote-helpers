@@ -1,6 +1,6 @@
 
 # README: Evernote Helpers
-Last updated: <2017-12-22 12:10:51>
+Last updated: <2017-12-23 10:37:28>
 
 ## Introduction
 
@@ -91,10 +91,11 @@ an API token with the etool get_token function.
 ### Reasons to prefer Applescript over Python
 
  * Applescript carries out Evernote interactions directly on the local
-   machine and doesn't need to be authenticated.
+   machine and doesn't need to be authenticated. Synchronization with the
+   cloud version is left to Evernote itself.
 
  * Applescript is not subject to the bandwidth limits Evernote imposes on
-   online applications.
+   online applications because it does its work locally.
 
  * Python interactions require internet access. Applescript interactions do
    not.
