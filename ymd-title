@@ -20,8 +20,8 @@
 -- will be requested even if multiple notes are matched and updated.
 -- ============================================================================
 on run argv
-    set cwd to (do shell script "pwd")
-    set fpath to cwd & "/library.scpt"
+    set parpath to POSIX path of ((path to me as text) & "::")
+    set fpath to parpath & "/library.scpt"
     set lib to load script POSIX file fpath
 
     set confirmed to false

@@ -12,7 +12,8 @@
 -- will cause the script to fail with an error.
 -- ============================================================================
 on run argv
-    set fpath to "/Users/tbarron/prj/evernote_helpers/library.scpt"
+    set parpath to POSIX path of ((path to me as text) & "::")
+    set fpath to parpath & "/library.scpt"
     set lib to load script POSIX file fpath
     set overwrite to false
     set which_week to ""

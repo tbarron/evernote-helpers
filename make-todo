@@ -9,8 +9,8 @@
 -- Open the note in a new window
 -- ============================================================================
 on run argv
-    set cwd to (do shell script "pwd")
-    set fpath to cwd & "/library.scpt"
+    set parpath to POSIX path of ((path to me as text) & "::")
+    set fpath to parpath & "/library.scpt"
     set lib to load script POSIX file fpath
     activate application "Evernote"
     tell application "Evernote"
