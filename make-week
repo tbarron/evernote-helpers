@@ -75,6 +75,17 @@ on run argv
                 set targ_note to item 1 of nlist
                 set HTML content of targ_note to HTML content of template
             end if
+
+            if weekday of the_day is Sunday then
+                set ftlist to (find notes "tag:money tag:template notebook:Checklists")
+                set template to item 1 of ftlist
+                set ymd to lib's ymd_format(the_day)
+                lib's duplicate_note(template, ¬
+                                     "finances: " & ymd, ¬
+                                     {"money", "finances"}, ¬
+                                     "Reference")
+            end if
+
             set the_day to the_day + 24*3600
             set day_title to lib's diary_title(the_day)
             if weekday of the_day is Monday then
