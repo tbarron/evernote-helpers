@@ -1,6 +1,6 @@
 
 # README: Evernote Helpers
-Last updated: <2017-12-23 10:37:28>
+Last updated: <2018.0716 13:30:46>
 
 ## Introduction
 
@@ -14,6 +14,10 @@ below).
 
  * add-tags:
     * Assign a (set of) tags to a (set of) notes
+
+ * consolidate-conflicts
+    * Collect any notes from conflict notebooks into a single notebook and
+      delete all the dated conflict notebooks
 
  * count-notes:
     * Count the Evernote notes that match a given query string
@@ -62,8 +66,8 @@ below).
 I tried using python to manipulate Evernote. The code is in etool.py. That
 requires using oauth authentication and authorization. etool has a
 'get_token' function that lets you interact with Evernote to authorize the
-app and generate an API key that can then be used for specified time period
-to access the account on behalf of the user.
+app and generate an API key that can then be used for a specified time
+period to access the account on behalf of the user.
 
 Other functions include create_notebook (incomplete), list_notes, and
 list_notebooks.
