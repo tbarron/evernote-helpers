@@ -27,6 +27,8 @@ on run argv
         set tlist to (find notes query)
         if (count of tlist) is greater than 1 then
             display dialog "'" & today_title & "' matches multiple notes"
+        else if (count of tlist) is less than 1 then
+            display dialog "No note matches today's date"
         end if
 
         set yester_note to item 1 of ylist
