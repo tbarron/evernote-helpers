@@ -1,0 +1,23 @@
+#!/usr/bin/osascript
+-- ============================================================================
+-- For Evernote notebooks with names of the form "Conflicting Changes
+-- <date> <time> +0000", move any notes to a single notebook named
+-- "Conflicting Changes" and then delete the dated conflicting changes
+-- notebooks.
+-- ============================================================================
+tell application "Evernote"
+    set nb_list to every notebook
+    repeat with nb in nb_list
+        set nb_name to (name of nb as string)
+        set notelist to (find notes "notebook:'" & nb_name & "'")
+        if "Conflicting" is in nb_name then
+            if "+0000" is in nb_name then
+                set note_list to (find notes "notebook:\"" & nb_name & "\"")
+                repeat with thisnote in note_list
+                    move thisnote to notebook named "Conflicting Changes"
+                end repeat
+                delete nb
+            end if
+        end if
+    end repeat
+end tell
