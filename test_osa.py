@@ -8,66 +8,11 @@ import re
 
 
 # -----------------------------------------------------------------------------
-def test_make_date_noarg():
-    """
-    make-date with no arg spits out an error
-    """
-    result = pexpect.run("make-date")
-    assert "execution error:".encode() in result
-    assert "t get item 1 of {}.".encode() in result
-
-
-# -----------------------------------------------------------------------------
-def test_make_date_basic():
-    """
-    make-date with arg '2017.0101' should work
-    """
-    result = pexpect.run("make-date 2017.0101")
-    result = result.decode()
-    assert "result = " not in result
-    assert "2017.0102" in result
-    assert re.match("\d{4}\.\d{4}\.\S\S\S", result)
-
-
-# -----------------------------------------------------------------------------
-def test_make_date_hhmm():
-    """
-    make-date with arg '2017.0217 13:29' should work
-    """
-    result = pexpect.run("make-date '2017.0217 13:29'")
-    result = result.decode()
-    assert "result = " not in result
-    assert re.match("2017\.0218\.sat", result)
-
-
-# -----------------------------------------------------------------------------
-def test_make_date_hhmmss():
-    """
-    make-date with arg '2017.0430 13:29:57' should work
-    """
-    result = pexpect.run("make-date '2017.0430 13:29:57'")
-    result = result.decode()
-    assert "result = " not in result
-    assert re.match("2017\.0501\.mon", result)
-
-
-# -----------------------------------------------------------------------------
-def test_make_date_wkday():
-    """
-    the output of make-date should be '2017.0606.tue'
-    """
-    result = pexpect.run("make-date '2017.0606'")
-    result = result.decode()
-    assert "result = " not in result
-    assert re.match("2017\.0607\.wed", result)
-
-
-# -----------------------------------------------------------------------------
 def test_count_notes_one():
     """
     The query string 'tag:current intitle:Start' should always find one note
     """
-    result = pexpect.run("count-notes 'tag:current intitle:Start'")
+    result = pexpect.run("count-notes 'intitle:\"Start Here\"'")
     assert "notes: 1\r\n" in result.decode()
 
 
@@ -78,6 +23,26 @@ def test_count_notes_zero():
     """
     result = pexpect.run("count-notes 'tag:precious tag:delete_me'")
     assert "notes: 0\r\n" in result.decode()
+
+
+# -----------------------------------------------------------------------------
+def test_create_note():
+    """
+    The script new-note should create a new note with tags, title, and text
+    specified on the command line.
+    """
+    cmd = ("create-note --title 'Test Note' --text 'this is a test' "
+           "--tag 'test_create_note' --tag 'delete_me'")
+    result = pexpect.run(cmd)
+    assert "note Test Note created" in result.decode()
+
+    cmd = "count-notes 'tag:test_create_note tag:delete_me intitle:Test'"
+    result = pexpect.run(cmd)
+    assert "notes: 1\r\n" in result.decode()
+
+    cmd = "del-notes 'tag:test_create_note tag:delete_me intitle:Test'"
+    result = pexpect.run(cmd)
+    assert "1 notes deleted" in result.decode()
 
 
 # -----------------------------------------------------------------------------
@@ -111,18 +76,55 @@ def test_del_notes_nomult():
 
 
 # -----------------------------------------------------------------------------
-def test_create_note():
+def test_make_date_basic():
     """
-    The script new-note should create a new note with tags, title, and text
-    specified on the command line.
+    make-date with arg '2017.0101' should work
     """
-    cmd = ("create-note --title 'Test Note' --text 'this is a test' "
-           "--tag 'testing' --tag 'delete_me'")
-    result = pexpect.run(cmd)
-    assert "note Test Note created" in result.decode()
+    result = pexpect.run("make-date 2017.0101")
+    result = result.decode()
+    assert "result = " not in result
+    assert "2017.0102" in result
+    assert re.match(r"\d{4}\.\d{4}\.\S\S\S", result)
 
-    result = pexpect.run("count-notes 'tag:testing tag:delete_me intitle:Test'")
-    assert "notes: 1\r\n" in result.decode()
 
-    result = pexpect.run("del-notes 'tag:testing tag:delete_me intitle:Test'")
-    assert "1 notes deleted" in result.decode()
+# -----------------------------------------------------------------------------
+def test_make_date_hhmm():
+    """
+    make-date with arg '2017.0217 13:29' should work
+    """
+    result = pexpect.run("make-date '2017.0217 13:29'")
+    result = result.decode()
+    assert "result = " not in result
+    assert re.match(r"2017\.0218\.sat", result)
+
+
+# -----------------------------------------------------------------------------
+def test_make_date_hhmmss():
+    """
+    make-date with arg '2017.0430 13:29:57' should work
+    """
+    result = pexpect.run("make-date '2017.0430 13:29:57'")
+    result = result.decode()
+    assert "result = " not in result
+    assert re.match(r"2017\.0501\.mon", result)
+
+
+# -----------------------------------------------------------------------------
+def test_make_date_noarg():
+    """
+    make-date with no arg spits out an error
+    """
+    result = pexpect.run("make-date")
+    assert "execution error:".encode() in result
+    assert "t get item 1 of {}.".encode() in result
+
+
+# -----------------------------------------------------------------------------
+def test_make_date_wkday():
+    """
+    the output of make-date should be '2017.0606.tue'
+    """
+    result = pexpect.run("make-date '2017.0606'")
+    result = result.decode()
+    assert "result = " not in result
+    assert re.match(r"2017\.0607\.wed", result)
