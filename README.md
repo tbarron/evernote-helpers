@@ -1,6 +1,6 @@
 
 # README: Evernote Helpers
-Last updated: <2018.0716 13:30:46>
+Last updated: <2018.0911 16:13:39>
 
 ## Introduction
 
@@ -108,3 +108,8 @@ an API token with the etool get_token function.
    justifying the level of access your app requires. With Applescript, all
    the functions are immediately available without having to justify
    anything to anybody.
+
+### References
+
+  * [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
+  * [Semantic Versioning](https://semver.org/)
