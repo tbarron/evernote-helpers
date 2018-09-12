@@ -1,6 +1,6 @@
-
 # README: Evernote Helpers
-Last updated: <2018.0912 08:02:07>
+Last updated: <2018.0912 09:22:59>
+
 
 ## Introduction
 
@@ -9,6 +9,7 @@ Evernote account. There is a python program that uses the Evernote OAUTH
 mechanism for accessing Evernote online, but that turned out to be less
 useful than expected (see "Reasons to prefer Applescript over Python"
 below).
+
 
 ## Contents
 
@@ -31,14 +32,21 @@ below).
  * del-notes:
     * Delete notes that match a specified query string
 
+ * etool.py:
+    * See "The Python Experiment" below
+
  * library:
-    * Utility functions used by other scripts
+    * Utility functions used by other scripts. The file library.scpt is
+      generated from this source by the command in Makefile.
 
  * make-date:
     * Date manipulation code for testing and examples
 
  * make-day:
     * Create a day note based on the relevant template
+
+ * make-todo:
+    * Create an action item note with the current date
 
  * make-week:
     * Create a week's worth of diary notes
@@ -49,7 +57,7 @@ below).
  * note-exists:
     * Checks whether a specified query string matches at least one note
 
- * README:
+ * README.md:
     * This file
 
  * rm-tags:
@@ -61,6 +69,13 @@ below).
  * test_osa.py:
     * Test Applescript/Evernote interaction code
 
+ * version
+    * Report the project version
+
+ * ymd-title
+    * Add modified ISO date to note titles that don't have it
+
+
 ## The Python Experiment
 
 I tried using python to manipulate Evernote. The code is in etool.py. That
@@ -71,6 +86,7 @@ period to access the account on behalf of the user.
 
 Other functions include create_notebook (incomplete), list_notes, and
 list_notebooks.
+
 
 ### The 'cred' file
 
@@ -91,6 +107,7 @@ but does not support examining or manipulating existing notes. The second
 stanza provides full access. In each case, the key and secret are obtained
 from the Evernote website in a manual interaction and then used to request
 an API token with the etool get_token function.
+
 
 ### Reasons to prefer Applescript over Python
 
