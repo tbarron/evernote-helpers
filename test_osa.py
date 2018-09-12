@@ -128,3 +128,22 @@ def test_make_date_wkday():
     result = result.decode()
     assert "result = " not in result
     assert re.match(r"2017\.0607\.wed", result)
+
+
+# -----------------------------------------------------------------------------
+def test_release():
+    """
+    The output of version should match the latest git tag
+    """
+    gstat = pexpect.run("git status --porc").decode()
+    assert gstat.strip() == "", "uncommitted files"
+
+    with open("VERSION.txt", 'r') as rbl:
+        exp = rbl.read().strip()
+
+    gtags = pexpect.run("git --no-pager tag").decode()
+    ftag = gtags.split()[-1]
+    assert exp == ftag, "not releasable"
+
+    result = pexpect.run("version").decode()
+    assert exp.rstrip() in result, "version function is broken"
