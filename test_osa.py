@@ -143,7 +143,7 @@ def test_release():
 
     gtags = pexpect.run("git --no-pager tag").decode()
     ftag = gtags.split()[-1]
-    assert exp == ftag, "not releasable"
+    assert exp == ftag, "not releasable: version != final git tag"
 
     result = pexpect.run("version").decode()
     assert exp.rstrip() in result, "version function is broken"
