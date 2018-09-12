@@ -1,0 +1,14 @@
+#!/usr/bin/osascript
+-- ============================================================================
+-- Report the project version
+--
+-- Examples:
+--
+--    version
+-- ============================================================================
+on run argv
+    set curpath to POSIX path of ((path to me as text) & "::")
+    set zpath to curpath & "/VERSION.txt"
+    set verstr to (read POSIX file zpath)
+    do shell script "echo " & verstr
+end run
