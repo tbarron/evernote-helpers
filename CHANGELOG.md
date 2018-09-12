@@ -15,13 +15,16 @@ time of the git commit in the changelog. The title describes the overall
 update made with this release. The tag is a short marker that begins each
 of the releated commit messages.
 
-## [Unreleased] / 2018-09-11 / Changelog and Semantic Versioning
+## [0.6.1] / 2018-09-12 / Changelog and Semantic Versioning
 ### Added
  - Added CHANGELOG.md describing updates to the project over time
+ - Added version, VERSION.txt, test_release() in test_osa.py to track
+   project version
 
 ### Changed
  - Update tests to make them work -- putting them in alphabetical order,
    updating them for python3.6, etc.
+ - Document release process in README.md
 
 
 ## [0.6.0] / 2018-07-16 / Conflict note consolidation
