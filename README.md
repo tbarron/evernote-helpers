@@ -1,6 +1,6 @@
 
 # README: Evernote Helpers
-Last updated: <2018.0911 16:13:39>
+Last updated: <2018.0912 08:02:07>
 
 ## Introduction
 
@@ -108,6 +108,24 @@ an API token with the etool get_token function.
    justifying the level of access your app requires. With Applescript, all
    the functions are immediately available without having to justify
    anything to anybody.
+
+
+### Release Process
+
+  * Checkout the current master branch to a child branch with a meaningful
+    name.
+  * Make changes to the child branch until it is ready to be the next
+    release.
+  * Once all changes are complete,
+      * Update CHANGELOG.md to reflect the updates.
+      * Update the file VERSION.txt to reflect the new version.
+      * Make an annotated version tag on the last commit in the work
+        branch. Put the text of the CHANGELOG.md entry in the description
+        of the new tag.
+      * Verify that all tests pass.
+  * Checkout master and merge the work branch.
+  * Push master to the origin.
+
 
 ### References
 
