@@ -15,6 +15,11 @@ time of the git commit in the changelog. The title describes the overall
 update made with this release. The tag is a short marker that begins each
 of the releated commit messages.
 
+## [0.6.2] / 2018-09-12 / README.md updates (readme, RD)
+### Additions
+ - Add missing info to README.md
+
+
 ## [0.6.1] / 2018-09-12 / Changelog and Semantic Versioning (changelog, CL)
 ### Added
  - Add CHANGELOG.md describing updates to the project over time
