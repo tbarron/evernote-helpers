@@ -15,10 +15,10 @@ time of the git commit in the changelog. The title describes the overall
 update made with this release. The tag is a short marker that begins each
 of the releated commit messages.
 
-## [0.6.1] / 2018-09-12 / Changelog and Semantic Versioning
+## [0.6.1] / 2018-09-12 / Changelog and Semantic Versioning (changelog, CL)
 ### Added
- - Added CHANGELOG.md describing updates to the project over time
- - Added version, VERSION.txt, test_release() in test_osa.py to track
+ - Add CHANGELOG.md describing updates to the project over time
+ - Add version, VERSION.txt, test_release() in test_osa.py to track
    project version
 
 ### Changed
@@ -89,14 +89,14 @@ of the releated commit messages.
 ## [0.4.0] / 2017-10-18 / ymd-title, Idempotent utility routines
 ### Added
  - Add ymd_format to library to support ymd-title
- - Added script ymd-title: if note title already starts with yyyy.mmdd, do
+ - Add script ymd-title: if note title already starts with yyyy.mmdd, do
    nothing, otherwise add note create date to the title in format
    'yyyy.mmdd: '
 
 ### Changed
  - Move safe utility routines for tagging notes (safe-addtag, safe-rmtag)
    from daily-twiddle to library
- - Updated daily-twiddle to use library routines safe-{add,rm}tag
+ - Update daily-twiddle to use library routines safe-{add,rm}tag
 
 
 ## [0.3.0] / 2017-10-17 / make-day, library rebuild ability
@@ -139,4 +139,4 @@ of the releated commit messages.
 ## [0.0.0] / 2017-10-13 / Getting started
 ### Added
  - Inception
- - Setting things up -- py.test, utility functions, etc.
+ - Set things up -- py.test, utility functions, etc.
