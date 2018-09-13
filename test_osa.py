@@ -4,7 +4,6 @@ Test Applescript/Evernote interaction code
 Run this file with the command 'py.test'
 """
 import pdb
-import pexpect
 import pytest
 import re
 import tbx
