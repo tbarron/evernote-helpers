@@ -15,6 +15,15 @@ time of the git commit in the changelog. The title describes the overall
 update made with this release. The tag is a short marker that begins each
 of the releated commit messages.
 
+## [0.6.3] / 2018-09-13 / Releasability test (releasable, RL)
+### Additions
+ - Add file requirements.txt
+
+### Changes
+ - Rename test_release() to test_releasable(), updated it using tbx
+   functions based on how it's coded in the tbx project
+
+
 ## [0.6.2] / 2018-09-12 / README.md updates (readme, RD)
 ### Additions
  - Add missing info to README.md
