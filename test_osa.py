@@ -150,8 +150,8 @@ def test_releasable():
     last_tag = tbx.git_last_tag()
 
     msg = "Version ({}) does not match tag ({})"
-    msg = msg.format(tbx.version(), last_tag)
     result = pexpect.run("version").decode().rstrip()
+    msg = msg.format(result, last_tag)
     assert result == last_tag, msg
 
     assert tbx.git_hash() == tbx.git_hash(last_tag), "Tag != HEAD"
