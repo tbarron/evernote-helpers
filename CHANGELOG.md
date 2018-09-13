@@ -18,10 +18,14 @@ of the releated commit messages.
 ## [0.6.3] / 2018-09-13 / Releasability test (releasable, RL)
 ### Additions
  - Add file requirements.txt
+ - Add file conftest.py to support ad hoc debugging in tests
 
 ### Changes
  - Rename test_release() to test_releasable(), updated it using tbx
-   functions based on how it's coded in the tbx project
+   functions based on how it's coded in the tbx project (checks for
+   untracked files, unstaged updates, uncommitted updates, and, if the
+   current branch is 'master', that the last tag matches the current
+   version and the hash of HEAD matches the hash of the last tag).
 
 
 ## [0.6.2] / 2018-09-12 / README.md updates (readme, RD)
