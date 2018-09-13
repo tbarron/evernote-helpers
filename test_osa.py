@@ -17,6 +17,7 @@ def test_count_notes_one():
     """
     result = pexpect.run("count-notes 'intitle:\"Start Here\"'")
     assert "notes: 1\r\n" in result.decode()
+    pytest.dbgfunc()
 
 
 # -----------------------------------------------------------------------------
@@ -26,6 +27,7 @@ def test_count_notes_zero():
     """
     result = pexpect.run("count-notes 'tag:precious tag:delete_me'")
     assert "notes: 0\r\n" in result.decode()
+    pytest.dbgfunc()
 
 
 # -----------------------------------------------------------------------------
@@ -67,6 +69,7 @@ def test_del_notes_nomatch():
     """
     If del-notes matches no notes, it should report 'no notes match'
     """
+    pytest.dbgfunc()
     cmd = "del-notes 'tag:no_such_note'"
     result = pexpect.run(cmd)
     assert "no notes match tag:no_such_note" in result.decode()
@@ -79,6 +82,7 @@ def test_del_notes_nomult():
     them without -m option, should fail. Attempt to delete them with -m option,
     should succeed.
     """
+    pytest.dbgfunc()
     cmd = "create-note --tag 'testing' --tag 'delete_me' --title "
     result = pexpect.run(cmd + "'test note 1'")
     assert "note test note 1 created" in result.decode()
@@ -99,6 +103,7 @@ def test_make_date_basic():
     """
     result = pexpect.run("make-date 2017.0101")
     result = result.decode()
+    pytest.dbgfunc()
     assert "result = " not in result
     assert "2017.0102" in result
     assert re.match(r"\d{4}\.\d{4}\.\S\S\S", result)
@@ -111,6 +116,7 @@ def test_make_date_hhmm():
     """
     result = pexpect.run("make-date '2017.0217 13:29'")
     result = result.decode()
+    pytest.dbgfunc()
     assert "result = " not in result
     assert re.match(r"2017\.0218\.sat", result)
 
@@ -122,6 +128,7 @@ def test_make_date_hhmmss():
     """
     result = pexpect.run("make-date '2017.0430 13:29:57'")
     result = result.decode()
+    pytest.dbgfunc()
     assert "result = " not in result
     assert re.match(r"2017\.0501\.mon", result)
 
@@ -134,6 +141,7 @@ def test_make_date_noarg():
     result = pexpect.run("make-date")
     assert "execution error:".encode() in result
     assert "t get item 1 of {}.".encode() in result
+    pytest.dbgfunc()
 
 
 # -----------------------------------------------------------------------------
@@ -143,6 +151,7 @@ def test_make_date_wkday():
     """
     result = pexpect.run("make-date '2017.0606'")
     result = result.decode()
+    pytest.dbgfunc()
     assert "result = " not in result
     assert re.match(r"2017\.0607\.wed", result)
 
