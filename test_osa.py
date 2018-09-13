@@ -3,7 +3,9 @@ Test Applescript/Evernote interaction code
 
 Run this file with the command 'py.test'
 """
+import pdb
 import pexpect
+import pytest
 import re
 import tbx
 
@@ -136,6 +138,7 @@ def test_releasable():
     """
     The output of version should match the latest git tag
     """
+    pytest.dbgfunc()
     staged, changed, untracked = tbx.git_status()
     assert untracked == [], "You have untracked files"
     assert changed == [], "You have unstaged updates"
