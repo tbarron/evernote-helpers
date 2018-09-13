@@ -1,0 +1,3 @@
+pexpect
+pytest
+git+git://github.com/tbarron/tbx.git#egg=tbx
