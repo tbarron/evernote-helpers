@@ -34,18 +34,32 @@ def test_create_note():
     The script new-note should create a new note with tags, title, and text
     specified on the command line.
     """
+    pytest.dbgfunc()
+    query = "'tag:test_create_note tag:delete_me intitle:Test'"
+    result = pexpect.run("count-notes {}".format(query)).decode().strip()
+    found = re.findall(r"notes: (\d+)", result)
+    count = int(found.pop())
+    if 0 < count:
+        result = pexpect.run("del-notes -m {}".format(query)).decode().strip()
+        found = re.findall(r"(\d+) notes deleted", result)
+        deleted = int(found.pop())
+        if count != deleted:
+            msg = "Should have deleted {} but only got {}"
+            msg = msg.format(count, deleted)
+            pytest.fail(msg)
+
     cmd = ("create-note --title 'Test Note' --text 'this is a test' "
            "--tag 'test_create_note' --tag 'delete_me'")
-    result = pexpect.run(cmd)
-    assert "note Test Note created" in result.decode()
+    result = pexpect.run(cmd).decode()
+    assert "note Test Note created" in result
 
-    cmd = "count-notes 'tag:test_create_note tag:delete_me intitle:Test'"
-    result = pexpect.run(cmd)
-    assert "notes: 1\r\n" in result.decode()
+    cmd = "count-notes {}".format(query)
+    result = pexpect.run(cmd).decode()
+    assert "notes: 1\r\n" in result
 
-    cmd = "del-notes 'tag:test_create_note tag:delete_me intitle:Test'"
-    result = pexpect.run(cmd)
-    assert "1 notes deleted" in result.decode()
+    cmd = "del-notes {}".format(query)
+    result = pexpect.run(cmd).decode()
+    assert "1 notes deleted" in result
 
 
 # -----------------------------------------------------------------------------

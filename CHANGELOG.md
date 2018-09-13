@@ -15,6 +15,11 @@ time of the git commit in the changelog. The title describes the overall
 update made with this release. The tag is a short marker that begins each
 of the releated commit messages.
 
+## [0.6.4] / 2018-09-13 / Bullet-proof test_create_note (cnote, CN)
+### Changes
+ - In test_create_note(), check whether (one or more instances of) the test
+   note exists and, if so, delete them before attempting the actual test
+
 ## [0.6.3] / 2018-09-13 / Releasability test (releasable, RL)
 ### Additions
  - Add file requirements.txt
