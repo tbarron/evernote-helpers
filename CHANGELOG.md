@@ -15,6 +15,15 @@ time of the git commit in the changelog. The title describes the overall
 update made with this release. The tag is a short marker that begins each
 of the releated commit messages.
 
+## [Unreleased] / yyyy-mm-dd / Title (branch, TAG)
+
+## [0.6.5] / 2018-09-13 / Eliminate pexpect (tweaks, TW)
+### Changes
+ - Whitespace adjustments in CHANGELOG.md
+ - Support ad hoc debugging in all tests
+ - Replace pexpect.run() with tbx.run(), remove pexpect import
+
+
 ## [0.6.4] / 2018-09-13 / Bullet-proof test_create_note (cnote, CN)
 ### Changes
  - In test_create_note(), check whether (one or more instances of) the test
