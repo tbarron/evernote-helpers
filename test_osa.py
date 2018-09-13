@@ -5,6 +5,7 @@ Run this file with the command 'py.test'
 """
 import pexpect
 import re
+import tbx
 
 
 # -----------------------------------------------------------------------------
@@ -131,19 +132,23 @@ def test_make_date_wkday():
 
 
 # -----------------------------------------------------------------------------
-def test_release():
+def test_releasable():
     """
     The output of version should match the latest git tag
     """
-    gstat = pexpect.run("git status --porc").decode()
-    assert gstat.strip() == "", "uncommitted files"
+    staged, changed, untracked = tbx.git_status()
+    assert untracked == [], "You have untracked files"
+    assert changed == [], "You have unstaged updates"
+    assert staged == [], "You have updates staged but not committed"
 
-    with open("VERSION.txt", 'r') as rbl:
-        exp = rbl.read().strip()
+    if tbx.git_current_branch() != "master":
+        return True
 
-    gtags = pexpect.run("git --no-pager tag").decode()
-    ftag = gtags.split()[-1]
-    assert exp == ftag, "not releasable: version != final git tag"
+    last_tag = tbx.git_last_tag()
 
-    result = pexpect.run("version").decode()
-    assert exp.rstrip() in result, "version function is broken"
+    msg = "Version ({}) does not match tag ({})"
+    msg = msg.format(tbx.version(), last_tag)
+    result = pexpect.run("version").decode().rstrip()
+    assert result == last_tag, msg
+
+    assert tbx.git_hash() == tbx.git_hash(last_tag), "Tag != HEAD"
