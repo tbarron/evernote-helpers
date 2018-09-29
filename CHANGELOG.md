@@ -17,6 +17,11 @@ of the releated commit messages.
 
 ## [Unreleased] / yyyy-mm-dd / Title (branch, TAG)
 
+### Additions
+ - Add 'clean' target to Makefile for removing generated files, emacs
+   backup files, etc.
+
+
 ## [0.6.5] / 2018-09-13 / Eliminate pexpect (tweaks, TW)
 ### Changes
  - Whitespace adjustments in CHANGELOG.md
