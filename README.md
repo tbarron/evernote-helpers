@@ -1,5 +1,5 @@
 # README: Evernote Helpers
-Last updated: <2018.0912 09:22:59>
+Last updated: <2018.0929 11:46:47>
 
 
 ## Introduction
@@ -10,6 +10,11 @@ mechanism for accessing Evernote online, but that turned out to be less
 useful than expected (see "Reasons to prefer Applescript over Python"
 below).
 
+This project follows the conventions described at
+
+  * [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+  * [Semantic Versioning](https://semver.org/), and
+  * [Simple Release Cycle](https://tinyurl.com/ycyjojez)
 
 ## Contents
 
@@ -127,20 +132,30 @@ an API token with the etool get_token function.
    anything to anybody.
 
 
-### Release Process
+### [Semantic Versioning](https://semver.org/)
+
+  * Update the MAJOR version component on incompatible API changes.
+  * Update the MINOR version component on new, backward-compatible
+    functionality.
+  * Update the PATCH version component for backward-compatible bug fixes.
+
+
+### [Simple Release Cycle](https://tinyurl.com/ycyjojez)
 
   * Checkout the current master branch to a child branch with a meaningful
     name.
   * Make changes to the child branch until it is ready to be the next
     release.
-  * Once all changes are complete,
+  * Verify that all tests are passing.
+  * Once all changes are complete and tests are passing,
       * Update CHANGELOG.md to reflect the updates.
       * Update the file VERSION.txt to reflect the new version.
       * Make an annotated version tag on the last commit in the work
         branch. Put the text of the CHANGELOG.md entry in the description
         of the new tag.
-      * Verify that all tests pass.
+      * Verify again that all tests pass.
   * Checkout master and merge the work branch.
+  * Verify again that all tests pass.
   * Push master to the origin.
 
 
@@ -148,3 +163,4 @@ an API token with the etool get_token function.
 
   * [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
   * [Semantic Versioning](https://semver.org/)
+  * [Simple Release Cycle](https://tinyurl.com/ycyjojez)

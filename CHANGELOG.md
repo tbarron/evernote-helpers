@@ -1,8 +1,12 @@
 # Changelog
 
-Notable changes for this project. The format is based on
-[Keep a Changelog](https://keepachangelog.com/en/1.0.0/). This project
-adheres to [Semantic Versioning](https://semver.org/).
+Notable changes for this project. This project follows the conventions
+described at
+
+  * [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+  * [Semantic Versioning](https://semver.org/), and
+  * [Simple Release Cycle](https://tinyurl.com/ycyjojez)
+
 
 Each release header has the following format:
 
@@ -16,6 +20,9 @@ update made with this release. The tag is a short marker that begins each
 of the releated commit messages.
 
 ## [Unreleased] / yyyy-mm-dd / Title (branch, TAG)
+
+ - Update README.md and CHANGELOG.md with links to Keep a Changelog,
+   Semantic Versioning, and Simple Release Cycle
 
 ### Additions
  - Add 'clean' target to Makefile for removing generated files, emacs
