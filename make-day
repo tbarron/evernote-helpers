@@ -26,9 +26,11 @@ on run argv
         set tlist to (find notes "tag:diary tag:template intitle:" & wkd)
         set template to (item 1 of tlist)
 
-        open note window with lib's duplicate_note(template, ¬
-                                                   day_title, ¬
-                                                   tag_list, ¬
-                                                   "Journal")
+        set final to lib's duplicate_note(template, ¬
+                                          day_title, ¬
+                                          tag_list, ¬
+                                          "Journal")
+        open note window with final
+        do shell script "echo " & (note link of final)
     end tell
 end run
