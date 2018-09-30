@@ -4,33 +4,62 @@
 --
 -- Examples:
 --
---    create-note --title "Foobar" --text "in the note body" --tag "fiddle"
+--    create-note [--title "Foobar"]
+--                [--tag "fiddle"]
+--                [--text "in the note body" | --file PATH]
+--                [--html]
+--                [--notebook "Journal"]
+--                [--show]
+--
+-- With --file PATH, --html is set implicitly.
 --
 -- An option string like "--title --text frobnicate" would confuse this
 -- code. When setting note_title, text_str, etc., need to check for '--' on
 -- the argument.
 -- ============================================================================
 on run argv
+    set parpath to POSIX path of ((path to me as text) & "::")
+    set fpath to parpath & "/library.scpt"
+    set lib to load script POSIX file fpath
+
     set newline to "\n"
     set tag_list to {}
     set text_str to ""
+    set note_title to "Untitled"
+    set nb_name to "Testing"
     set show to false
+    set html_input to false
     repeat with idx from 1 to (count of argv)
         if item idx of argv is "--title" then
             set note_title to item (idx + 1) of argv
         else if item idx of argv is "--text" then
             set text_str to text_str & item (idx+1) of argv & newline
+        else if item idx of argv is "--html" then
+            set html_input to true
+        else if item idx of argv is "--file" then
+            set text_str to lib's file_contents(item (idx+1) of argv)
+            set html_input to true
         else if item idx of argv is "--tag" then
             set end of tag_list to item (idx+1) of argv
         else if item idx of argv is "--show" then
             set show to true
+        else if item idx of argv is "--notebook" then
+            set nb_name to item (idx + 1) of argv
         end if
     end repeat
 
     tell application "Evernote"
-        set new_note to (create note title note_title ¬
-                                 with text text_str ¬
-                                 tags tag_list)
+        if html_input then
+            set new_note to (create note title note_title ¬
+                                         notebook nb_name ¬
+                                         with html text_str ¬
+                                         tags tag_list)
+        else
+            set new_note to (create note title note_title ¬
+                                         notebook nb_name ¬
+                                         with text text_str ¬
+                                         tags tag_list)
+        end if
         if show then
             open note window with new_note
         end if

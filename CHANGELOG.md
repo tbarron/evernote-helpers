@@ -27,6 +27,9 @@ of the releated commit messages.
    already exists, emit the note link for the existing note without
    creating a new one.
  - Rename create-note to make-note.
+ - Update make-note to accept new options:
+    --file to specify a file to read for note content
+    --html to indicate format of input
  - Update README.md and CHANGELOG.md with links to Keep a Changelog,
    Semantic Versioning, and Simple Release Cycle
 
