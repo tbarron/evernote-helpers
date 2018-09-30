@@ -23,6 +23,7 @@ of the releated commit messages.
 
  - Update make-day so that it makes a new note and also emits the link to
    that note.
+ - Rename create-note to make-note.
  - Update README.md and CHANGELOG.md with links to Keep a Changelog,
    Semantic Versioning, and Simple Release Cycle
 
