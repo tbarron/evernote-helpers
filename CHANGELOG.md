@@ -33,7 +33,8 @@ of the releated commit messages.
 ### Additions
  - Add 'clean' target to Makefile for removing generated files, emacs
    backup files, etc.
-
+ - Function file_contents() added to library for reading the contents of a
+   file
 
 ## [0.6.5] / 2018-09-13 / Eliminate pexpect (tweaks, TW)
 ### Changes

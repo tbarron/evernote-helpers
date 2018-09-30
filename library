@@ -4,6 +4,16 @@
 -- This has to be rebuilt into library.scpt if it changes. Running 'make'
 -- will do this (see Makefile).
 -- ============================================================================
+-- Read file *path* and return its contents as a UTF-16 string
+--
+on file_contents(path)
+    set handle to (open for access (POSIX file path))
+    set content to (read handle for (get eof handle))
+    close access handle
+    return content
+end file_contents
+
+-- ============================================================================
 -- Copy the contents of *old_note* into a new note titled *new_title*
 --
 on copy_note(old_note, new_title)
