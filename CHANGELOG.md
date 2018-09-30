@@ -23,6 +23,9 @@ of the releated commit messages.
 
  - Update make-day so that it makes a new note and also emits the link to
    that note.
+ - Update make-day to be idempotent. That is, if the target day note
+   already exists, emit the note link for the existing note without
+   creating a new one.
  - Rename create-note to make-note.
  - Update README.md and CHANGELOG.md with links to Keep a Changelog,
    Semantic Versioning, and Simple Release Cycle
