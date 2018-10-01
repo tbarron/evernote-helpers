@@ -1,5 +1,5 @@
 # README: Evernote Helpers
-Last updated: <2018.0929 11:46:47>
+Last updated: <2018.1001 17:40:19>
 
 
 ## Introduction
@@ -50,6 +50,9 @@ This project follows the conventions described at
  * make-day:
     * Create a day note based on the relevant template
 
+ * make-season.py
+    * Python that assembles HTML for a season page
+
  * make-todo:
     * Create an action item note with the current date
 
@@ -67,6 +70,12 @@ This project follows the conventions described at
 
  * rm-tags:
     * Remove a (set of) tags from a (set of) notes
+
+ * show-note-html
+    * Dump the content of the first matched note as HTML
+
+ * show-note-link
+    * Retrieve and report the internal link for the first matched note
 
  * show-notes:
     * Display a set of notes
@@ -150,10 +159,10 @@ an API token with the etool get_token function.
   * Once all changes are complete and tests are passing,
       * Update CHANGELOG.md to reflect the updates.
       * Update the file VERSION.txt to reflect the new version.
+      * Verify again that all tests pass.
       * Make an annotated version tag on the last commit in the work
         branch. Put the text of the CHANGELOG.md entry in the description
         of the new tag.
-      * Verify again that all tests pass.
   * Checkout master and merge the work branch.
   * Verify again that all tests pass.
   * Push master to the origin.
