@@ -38,6 +38,9 @@ of the releated commit messages.
    backup files, etc.
  - Function file_contents() added to library for reading the contents of a
    file
+ - Update make-day and make-note to put the note link into the clipboard so
+   it can be pasted wherever
+
 
 ## [0.6.5] / 2018-09-13 / Eliminate pexpect (tweaks, TW)
 ### Changes

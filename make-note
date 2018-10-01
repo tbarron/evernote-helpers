@@ -63,6 +63,7 @@ on run argv
         if show then
             open note window with new_note
         end if
+        set the clipboard to (note link of new_note)
     end tell
 
     do shell script "echo note " & note_title & " created"
