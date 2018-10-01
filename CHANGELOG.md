@@ -19,8 +19,9 @@ time of the git commit in the changelog. The title describes the overall
 update made with this release. The tag is a short marker that begins each
 of the releated commit messages.
 
-## [Unreleased] / yyyy-mm-dd / Title (branch, TAG)
-
+## [0.7.1] / 2018-10-01 / Patch tests to avoid pexpect and use tbx (master, TBX)
+### Changes
+ - Update test_releasable() to use tbx.run rather than pexpect.run
 
 ## [0.7.0] / 2018-09-29 / Link on seasonal calendar page (seasons, SEA)
 ### Changes
