@@ -168,7 +168,7 @@ def test_releasable():
     last_tag = tbx.git_last_tag()
 
     msg = "Version ({}) does not match tag ({})"
-    result = tbx.run("version")
+    result = tbx.run("version").rstrip()
     msg = msg.format(result, last_tag)
     assert result == last_tag, msg
 
