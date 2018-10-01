@@ -30,6 +30,13 @@ of the releated commit messages.
  - Update make-note to accept new options:
     --file to specify a file to read for note content
     --html to indicate format of input
+ - Add python script make-season that
+    - computes the beginning of the specified season (i.e., the Monday
+      before the equinox or solstice beginning the season)
+    - runs make-day for each date in the season
+    - assembles the HTML to go in the season note,
+    - writes the HTML to a temp file
+    - calls make-note, passing the name of the file containing the HTML
  - Update README.md and CHANGELOG.md with links to Keep a Changelog,
    Semantic Versioning, and Simple Release Cycle
 
