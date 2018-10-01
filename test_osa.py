@@ -49,7 +49,7 @@ def test_create_note():
             msg = msg.format(count, deleted)
             pytest.fail(msg)
 
-    cmd = ("create-note --title 'Test Note' --text 'this is a test' "
+    cmd = ("make-note --title 'Test Note' --text 'this is a test' "
            "--tag 'test_create_note' --tag 'delete_me'")
     result = tbx.run(cmd)
     assert "note Test Note created" in result
@@ -82,7 +82,7 @@ def test_del_notes_nomult():
     should succeed.
     """
     pytest.dbgfunc()
-    cmd = "create-note --tag 'testing' --tag 'delete_me' --title "
+    cmd = "make-note --tag 'testing' --tag 'delete_me' --title "
     result = tbx.run(cmd + "'test note 1'")
     assert "note test note 1 created" in result
     result = tbx.run(cmd + "'test note 2'")

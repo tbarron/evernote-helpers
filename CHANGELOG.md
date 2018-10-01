@@ -21,6 +21,9 @@ of the releated commit messages.
 
 ## [Unreleased] / yyyy-mm-dd / Title (branch, TAG)
 
+
+## [0.7.0] / 2018-09-29 / Link on seasonal calendar page (seasons, SEA)
+### Changes
  - Update make-day so that it makes a new note and also emits the link to
    that note.
  - Update make-day to be idempotent. That is, if the target day note
