@@ -43,6 +43,8 @@ of the releated commit messages.
     - remove the temp file
  - Update README.md and CHANGELOG.md with links to Keep a Changelog,
    Semantic Versioning, and Simple Release Cycle
+ - Update README.md to reflect new files
+ - Update tests for file renamed from create-note to make-note
 
 ### Additions
  - Add 'clean' target to Makefile for removing generated files, emacs
