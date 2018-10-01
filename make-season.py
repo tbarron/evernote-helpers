@@ -26,6 +26,7 @@ def main():
         pdb.set_trace()
     s_year = opts["YEAR"]
     s_season = opts["SEASON"]
+    filename = "{}.{}.html".format(s_year, s_season)
     solquinox = start_date(s_year, s_season)
     prev_mon = previous_monday(solquinox)
     end_date = next_season(opts["YEAR"], opts["SEASON"])
@@ -48,13 +49,14 @@ def main():
             text += 4 * "&nbsp;" + "<a href=\"{}\">{:02d}</a>".format(link, mday)
             current = succ_date(current)
     text += "</span></div></div>\n"
-    with open("season-note.html", 'w') as wbl:
+    with open(filename, 'w') as wbl:
         wbl.write(text)
     cmd = " ".join(["make-note --title \"{} {}\"".format(s_year, s_season),
                     "--tag {} --tag {} --html".format(s_year, s_season),
                     "--notebook \"Journal\" --file season-note.html --show"])
     pexpect.run(cmd)
-            
+    os.unlink(filename)
+
 
 # -----------------------------------------------------------------------------
 def epoch(ymd):

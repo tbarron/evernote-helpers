@@ -35,8 +35,9 @@ of the releated commit messages.
       before the equinox or solstice beginning the season)
     - runs make-day for each date in the season
     - assembles the HTML to go in the season note,
-    - writes the HTML to a temp file
+    - writes the HTML to a temp file (eg, "2018.winter.html")
     - calls make-note, passing the name of the file containing the HTML
+    - remove the temp file
  - Update README.md and CHANGELOG.md with links to Keep a Changelog,
    Semantic Versioning, and Simple Release Cycle
 
