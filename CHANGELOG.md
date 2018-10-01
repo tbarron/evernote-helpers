@@ -48,6 +48,7 @@ of the releated commit messages.
    file
  - Update make-day and make-note to put the note link into the clipboard so
    it can be pasted wherever
+ - Add Applescript scripts show-note-html and show-note-link
 
 
 ## [0.6.5] / 2018-09-13 / Eliminate pexpect (tweaks, TW)

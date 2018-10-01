@@ -1,0 +1,23 @@
+#!/usr/bin/osascript
+-- ============================================================================
+-- Retrieve and display the link for the first matched note
+--
+-- Examples:
+--
+--    show-note-link "tag:current"
+--    show-note-link "intitle:diary"
+--    show-note-link "intitle:Start tag:current"
+--
+-- Note that the query string must be enclosed in quotes if it
+-- contains spaces. Also, only the first note in the list of found
+-- notes will have its link reported
+-- ============================================================================
+on run argv
+    tell application "Evernote"
+        set query to item 1 of argv
+        set nlist to (find notes query)
+        set thisone to (item 1 of nlist)
+        set the clipboard to (note link of thisone as string)
+        do shell script "echo " & (note link of thisone)
+    end tell
+end run
