@@ -1,0 +1,4 @@
+alias add-tags="$HOME/prj/github/evernote_helpers/add-tags"
+alias daily-twiddle="$HOME/prj/github/evernote_helpers/daily-twiddle"
+alias make-week="$HOME/prj/github/evernote_helpers/make-week"
+alias rm-tags="$HOME/prj/github/evernote_helpers/rm-tags"
