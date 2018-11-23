@@ -55,8 +55,8 @@ on run argv
             set the_day to lib's ymd_parse(which_week)
             repeat until weekday of the_day is Monday
                set the_day to (the_day - 24*3600)
-               set day_title to lib's diary_title(the_day)
             end repeat
+            set day_title to lib's diary_title(the_day)
         end if
 
         repeat 7 times

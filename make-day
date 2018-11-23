@@ -35,7 +35,7 @@ on run argv
                                               tag_list, ¬
                                               "Journal")
         end if
-        -- open note window with final
+        open note window with final
         set the clipboard to (note link of final as string)
         do shell script "echo " & (note link of final)
     end tell
