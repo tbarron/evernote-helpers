@@ -1,0 +1,35 @@
+#!/usr/bin/osascript
+-- ============================================================================
+-- If the query matches a single note, duplicate it with the given title
+-- and tags in the specified notebook.
+--
+-- Example:
+--
+--    duplicate-note "tag:foo" notebook "title" tag1 tag2 tag3 ...
+--
+-- Note that the query string must be enclosed in quotes if it contains
+-- spaces. If more than one note is matched, fail with an error. All
+-- arguments are required.
+-- ============================================================================
+on run argv
+    set parpath to POSIX path of ((path to me as text) & "::")
+    set fpath to parpath & "/library.scpt"
+    set lib to load script POSIX file fpath
+
+    set query_str to item 1 of argv
+    set nb_str to item 2 of argv
+    set title_str to item 3 of argv
+    set tag_text_list to item 4 thru (count of argv) of argv
+    
+    tell application "Evernote"
+        set nlist to (find notes query_str)
+        if count of nlist is 0 then
+            do shell script "echo no notes matched"
+        else if count of nlist is greater than 1 then
+            do shell script "echo more than one note matched"
+        else
+            set template to item 1 of nlist
+            lib's duplicate_note(template, title_str, tag_text_list, nb_str)
+        end if
+    end tell
+end run
