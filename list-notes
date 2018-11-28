@@ -1,0 +1,23 @@
+#!/usr/bin/osascript
+-- ============================================================================
+-- List the Evernote notes that match a given query string
+--
+-- Examples:
+--
+--    list-notes "tag:current"
+--    list-notes "intitle:diary"
+--    list-notes "intitle:Start tag:current"
+--
+-- Note that the query string must be enclosed in quotes if it contains spaces
+-- ============================================================================
+on run argv
+    tell application "Evernote"
+        set query to item 1 of argv
+        set nlist to (find notes query)
+        set msg to ""
+        repeat with thisnote in nlist
+            set msg to msg & "echo " & (note link of thisnote) & "\n"
+        end repeat
+        do shell script msg
+    end tell
+end run
