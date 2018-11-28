@@ -19,9 +19,23 @@ time of the git commit in the changelog. The title describes the overall
 update made with this release. The tag is a short marker that begins each
 of the releated commit messages.
 
+## [0.8.0] / 2018-11-28 / Add list-notes and add-tag-url
+### Additions
+ - New function list-notes to retrieve the urls for all notes matching a
+   query string
+ - New function add-tag-url to add a tag to a note based on url
+ - New function duplicate-note to duplicate a note
+ - Shell script set_aliases that can be sourced by .zshrc (etc.) to set up
+   aliases for the functions in this directory
+
+### Changes
+ - Updates to README.md to document the latest changes
+
+
 ## [0.7.1] / 2018-10-01 / Patch tests to avoid pexpect and use tbx (master, TBX)
 ### Changes
  - Update test_releasable() to use tbx.run rather than pexpect.run
+
 
 ## [0.7.0] / 2018-09-29 / Link on seasonal calendar page (seasons, SEA)
 ### Changes
