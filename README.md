@@ -1,5 +1,5 @@
 # README: Evernote Helpers
-Last updated: <2018.1001 17:40:19>
+Last updated: <2018.1128 18:06:10>
 
 
 ## Introduction
@@ -18,6 +18,9 @@ This project follows the conventions described at
 
 ## Contents
 
+ * add-tag-url:
+    * Assign a (set of) tags to a note based on its url
+
  * add-tags:
     * Assign a (set of) tags to a (set of) notes
 
@@ -27,9 +30,6 @@ This project follows the conventions described at
 
  * count-notes:
     * Count the Evernote notes that match a given query string
-
- * create-note:
-    * Create a new note based on the command line args
 
  * daily-twiddle:
     * Shift tags on notes for today and yesterday
@@ -44,11 +44,17 @@ This project follows the conventions described at
     * Utility functions used by other scripts. The file library.scpt is
       generated from this source by the command in Makefile.
 
+ * list-notes:
+    * Report the note urls for each of the notes matching the query string
+
  * make-date:
     * Date manipulation code for testing and examples
 
  * make-day:
     * Create a day note based on the relevant template
+
+ * make-note:
+    * Create a new note based on the command line args
 
  * make-season.py
     * Python that assembles HTML for a season page
