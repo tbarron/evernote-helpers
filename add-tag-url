@@ -1,0 +1,24 @@
+#!/usr/bin/osascript
+-- ======================================================================
+-- Assign a (set of) tags to a note based on note url
+--
+-- Usage: add-tag-url URL tag1 tag2 ...
+--
+-- Find the note based on URL and add tag1, tag2, etc., to it.
+-- ======================================================================
+on run argv
+    tell application "Evernote"
+        set foobar to item 1 of argv as string
+        set thisnote to (find note foobar)
+        set tag_text_list to item 2 thru (count of argv) of argv
+        set tag_list to {}
+        repeat with tag_text in tag_text_list
+            if (not (tag named tag_text exists)) then
+                set end of tag_list to (make new tag with properties {name: tag_text})
+            else
+                set end of tag_list to (tag named tag_text)
+            end if
+        end repeat
+        assign tag_list to thisnote
+    end tell
+end run
